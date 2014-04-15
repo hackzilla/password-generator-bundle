@@ -1,6 +1,6 @@
 parameters:
-    hackzilla_password_generator.class: Hackzilla\Bundle\PasswordGeneratorBundle\Generator\PasswordGenerator
-    hackzilla_password_generator.dummy.class: Hackzilla\Bundle\PasswordGeneratorBundle\Generator\DummyPasswordGenerator
+    hackzilla_password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
+    hackzilla_password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
 
 services:
     hackzilla_password_generator:
