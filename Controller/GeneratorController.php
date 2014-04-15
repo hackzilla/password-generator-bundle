@@ -19,10 +19,12 @@ class GeneratorController extends Controller
      */
     public function formAction(Request $request)
     {
+        $passwordGenerator = $this->container->get('hackzilla_password_generator');
+
         $passwords = null;
         $options = new \Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options();
 
-        $form = $this->createForm(new \Hackzilla\Bundle\PasswordGeneratorBundle\Entity\OptionType, $options, array(
+        $form = $this->createForm(new \Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType($passwordGenerator->getPossibleOptions()), $options, array(
             'action' => $this->generateUrl('hackzilla_password_generator_show'),
             'method' => 'GET',
         ));
