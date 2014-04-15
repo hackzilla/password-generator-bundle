@@ -10,7 +10,7 @@ use Hackzilla\Bundle\TicketBundle\Form\GeneratorType;
  * Password Generator controller.
  *
  */
-class PasswordGeneratorController extends Controller
+class GeneratorController extends Controller
 {
 
     /**
