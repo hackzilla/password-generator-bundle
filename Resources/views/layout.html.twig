@@ -1,14 +1,6 @@
-<table border=0 cellspacing=0 cellpadding=0 bgcolor="white">
-<tbody>
-    <tr><td><img src="{{ asset('bundles/hackzillabarcode/white.png') }}" height="{{ space_top }}" width="1" alt=" "></td></tr>
-    <tr><td>
-        <img src="{{ asset('bundles/hackzillabarcode/white.png') }}" height="{{ height2 }}" width="{{ space_left }}" alt="#"/>
+{% extends '::base.html.twig' %}
 
-        {% for bar in bars %}
-            {% include (bar.type == 'white') ? 'HackzillaBarcodeBundle:Barcode:white.html.twig' : 'HackzillaBarcodeBundle:Barcode:black.html.twig' with bar %}
-        {% endfor %}
-        <img src="{{ asset('bundles/hackzillabarcode/white.png') }}" height="{{ height2 }}" width="{{ space_right }}" />
-    </td></tr>
-    <tr><td><img src="{{ asset('bundles/hackzillabarcode/white.png') }}" height="{{ space_bottom }}" width="1"></td></tr>
-</tbody>
-</table>
+{% block body %}
+    {% block layout %}
+    {% endblock layout %}
+{% endblock body %}

@@ -1,10 +1,14 @@
-{{ form_start(form) }}
-    {{ form(form) }}
-    <input type="submit" value="Generate">
-{{ form_end(form) }}
+{% extends 'PasswordGeneratorBundle::layout.html.twig' %}
 
-{% if passwords %}
-    {% for password in passwords %}
-        {{ password }}<br>
-    {% endfor %}
-{% endif %}
+{% block layout %}
+    {{ form_start(form) }}
+        {{ form(form) }}
+        <input type="submit" value="Generate">
+    {{ form_end(form) }}
+
+    {% if passwords %}
+        {% for password in passwords %}
+            {{ password }}<br>
+        {% endfor %}
+    {% endif %}
+{% endblock layout %}
