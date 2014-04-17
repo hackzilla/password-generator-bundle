@@ -16,7 +16,7 @@ class GeneratorController extends Controller
 {
 
     /**
-     * Lists all Ticket entities.
+     * Password generator form.
      *
      */
     public function formAction(Request $request)
