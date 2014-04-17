@@ -48,9 +48,4 @@ class GeneratorController extends Controller
         ));
     }
 
-    public function generateAction()
-    {
-        
-    }
-
 }
