@@ -2,7 +2,9 @@
 
 {% block layout %}
     {{ form_start(form) }}
-        {{ form(form) }}
+        {{ form_errors(form) }}
+        {{ form_rest(form) }}
+
         <input type="submit" value="Generate">
     {{ form_end(form) }}
 
