@@ -1,1 +1,10 @@
-{{ form(form) }}
+{{ form_start(form) }}
+    {{ form(form) }}
+    <input type="submit" value="Generate">
+{{ form_end(form) }}
+
+{% if passwords %}
+    {% for password in passwords %}
+        {{ password }}<br>
+    {% endfor %}
+{% endif %}

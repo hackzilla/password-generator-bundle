@@ -5,6 +5,7 @@ namespace Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Extension\DoNothingTransformer;
 
 class OptionType extends AbstractType
 {
@@ -23,19 +24,28 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+                ->add('quantity', 'number', array(
+                    'label' => 'How many passwords',
+                ))
+        ;
+
+        $builder
                 ->add('length', 'number', array(
                     'label' => 'Password length',
                 ))
         ;
 
+        /**
+         * @todo Figure out how to expose actual value in controller
+         */
         foreach ($this->_options as $key => $setting) {
-            $builder
-                    ->add($setting['key'], 'checkbox', array(
-                        'data' => $key,
+            $builder->add(
+                    $builder->create($setting['key'], 'checkbox', array(
+                        'value' => $key,
                         'label' => $setting['label'],
                         'required' => false,
                     ))
-            ;
+            );
         }
     }
 
@@ -55,7 +65,7 @@ class OptionType extends AbstractType
      */
     public function getName()
     {
-        return 'hackzilla_bundle_passwordgeneratorbundle_optiontype';
+        return '';
     }
 
 }

@@ -4,7 +4,9 @@ namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Hackzilla\Bundle\TicketBundle\Form\GeneratorType;
+use Hackzilla\PasswordGenerator\Generator\PasswordGenerator;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 
 /**
  * Password Generator controller.
@@ -22,9 +24,12 @@ class GeneratorController extends Controller
         $passwordGenerator = $this->container->get('hackzilla_password_generator');
 
         $passwords = null;
-        $options = new \Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options();
+        $options = new Options($passwordGenerator->getPossibleOptions());
 
-        $form = $this->createForm(new \Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType($passwordGenerator->getPossibleOptions()), $options, array(
+        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_LOWER_CASE)} = true;
+        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_NUMBERS)} = true;
+
+        $form = $this->createForm(new OptionType($passwordGenerator->getPossibleOptions()), $options, array(
             'action' => $this->generateUrl('hackzilla_password_generator_show'),
             'method' => 'GET',
         ));
@@ -32,7 +37,9 @@ class GeneratorController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $passwords = array('123456');
+            $passwordGenerator->setLength($options->getLength());
+            $passwordGenerator->setOptions($options->getOptionValue());
+            $passwords = $passwordGenerator->generatePasswords($options->getQuantity());
         }
 
         return $this->render('HackzillaPasswordGeneratorBundle:Generator:form.html.twig', array(
