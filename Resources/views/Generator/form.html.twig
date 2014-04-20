@@ -6,8 +6,10 @@
         {{ form_errors(form) }}
         {{ form_rest(form) }}
 
-        <input type="submit" value="Generate">
-        <input type="reset" value="Reset">
+        <div class="actions">
+            <input type="submit" class="btn btn-primary" value="Generate">
+            <input type="reset" class="btn btn-warning" value="Reset">
+        </div>
     {{ form_end(form) }}
 
     {% if passwords %}
