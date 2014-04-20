@@ -13,9 +13,11 @@
     {% if passwords %}
         <div class="passwords">
             <h2>Passwords</h2>
+            <ul>
             {% for password in passwords -%}
-                <div class="password">{{ password }}</div>
+                <li>{{ password }}</li>
             {% endfor %}
+            </ul>
         </div>
     {% endif %}
 {% endblock layout %}
