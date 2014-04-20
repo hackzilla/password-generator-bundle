@@ -53,3 +53,8 @@ public function registerBundles()
     );
 }
 ```
+
+Example Implementation
+----------------------
+
+See [Password generator app](https://github.com/hackzilla/password-generator-app)
