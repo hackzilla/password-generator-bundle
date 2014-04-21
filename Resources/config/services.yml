@@ -1,5 +1,6 @@
 parameters:
     hackzilla_password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
+    hackzilla_password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
     hackzilla_password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
 
 services:
