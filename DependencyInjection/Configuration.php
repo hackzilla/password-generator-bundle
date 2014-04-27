@@ -21,18 +21,6 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('hackzilla_password_generator');
 
-        /*
-          $rootNode
-          ->children()
-          ->arrayNode('permissions')
-          ->useAttributeAsKey('name')
-          ->prototype('array')
-          ->prototype('scalar')->end()
-          ->end()
-          ->end()
-          ->end();
-         */
-
         return $treeBuilder;
     }
 
