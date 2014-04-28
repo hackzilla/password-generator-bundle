@@ -19,7 +19,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('hackzilla_password_generator');
+        $treeBuilder->root('hackzilla_password_generator');
 
         return $treeBuilder;
     }
