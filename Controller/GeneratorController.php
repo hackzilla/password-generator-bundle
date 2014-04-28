@@ -24,15 +24,8 @@ class GeneratorController extends Controller
         $passwordGenerator = $this->container->get('hackzilla_password_generator');
 
         $passwords = null;
-        $options = new Options($passwordGenerator->getPossibleOptions());
-
-        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_LOWER_CASE)} = true;
-        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_NUMBERS)} = true;
-
-        $form = $this->createForm(new OptionType($passwordGenerator->getPossibleOptions()), $options, array(
-            'action' => $this->generateUrl('hackzilla_password_generator_show'),
-            'method' => 'GET',
-        ));
+        $options = $this->createOptionType($passwordGenerator);
+        $form = $this->buildForm($passwordGenerator, $options);
 
         $form->handleRequest($request);
 
@@ -45,6 +38,24 @@ class GeneratorController extends Controller
         return $this->render('HackzillaPasswordGeneratorBundle:Generator:form.html.twig', array(
                     'form' => $form->createView(),
                     'passwords' => $passwords,
+        ));
+    }
+
+    private function createOptionType(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator)
+    {
+        $options = new Options($passwordGenerator->getPossibleOptions());
+
+        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_LOWER_CASE)} = true;
+        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_NUMBERS)} = true;
+
+        return $options;
+    }
+
+    private function buildForm(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator, $options)
+    {
+        return $this->createForm(new OptionType($passwordGenerator->getPossibleOptions()), $options, array(
+                    'action' => $this->generateUrl('hackzilla_password_generator_show'),
+                    'method' => 'GET',
         ));
     }
 
