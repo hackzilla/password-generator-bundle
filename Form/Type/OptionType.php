@@ -34,9 +34,6 @@ class OptionType extends AbstractType
                 ))
         ;
 
-        /**
-         * @todo Figure out how to expose actual value in controller
-         */
         foreach ($this->_options as $key => $setting) {
             $builder->add(
                     $builder->create($setting['key'], 'checkbox', array(
