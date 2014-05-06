@@ -2,6 +2,14 @@ hackzilla_password_generator_form:
     pattern:  /
     defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form" }
 
+hackzilla_password_generator_human_form:
+    pattern:  /human
+    defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form", mode: human }
+
+hackzilla_password_generator_computer_form:
+    pattern:  /computer
+    defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form", mode: computer }
+
 hackzilla_password_generator_show:
     pattern:  /
     defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:generate" }

@@ -19,9 +19,9 @@ class GeneratorController extends Controller
      * Password generator form.
      *
      */
-    public function formAction(Request $request)
+    public function formAction(Request $request, $mode = null)
     {
-        $passwordGenerator = $this->container->get('hackzilla_password_generator');
+        $passwordGenerator = $this->getPasswordGenerator($mode);
 
         $passwords = null;
         $options = $this->createOptionType($passwordGenerator);
@@ -41,12 +41,42 @@ class GeneratorController extends Controller
         ));
     }
 
+    /**
+     * Lookup Password Generator Service
+     *
+     * @param string $mode
+     * @return PasswordGeneratorInterface
+     */
+    private function getPasswordGenerator($mode)
+    {
+        switch ($mode) {
+            case 'dummy':
+                $serviceName = 'hackzilla_password_generator_dummy';
+                break;
+
+            case 'computer':
+                $serviceName = 'hackzilla_password_generator_computer';
+                break;
+
+            case 'human':
+                $serviceName = 'hackzilla_password_generator_human';
+                break;
+
+            default:
+                $serviceName = 'hackzilla_password_generator';
+        }
+
+        return $this->container->get($serviceName);
+    }
+
     private function createOptionType(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator)
     {
         $options = new Options($passwordGenerator->getPossibleOptions());
 
-        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_LOWER_CASE)} = true;
-        $options->{$passwordGenerator->getOptionKey(PasswordGenerator::OPTION_NUMBERS)} = true;
+        if (is_a($passwordGenerator, 'ComputerPasswordGenerator')) {
+            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
+            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
+        }
 
         return $options;
     }

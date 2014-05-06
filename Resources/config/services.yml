@@ -1,7 +1,12 @@
 parameters:
     hackzilla_password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
-    hackzilla_password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
     hackzilla_password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
+    hackzilla_password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
+    hackzilla_password_generator.human.class: Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator
+    hackzilla_password_generator.human.wordList: /usr/share/dict/words
+    hackzilla_password_generator.human.wordSeparator: '-'
+    hackzilla_password_generator.human.minWordLength: 4
+    hackzilla_password_generator.human.maxWordLength: 99
 
 services:
     hackzilla_password_generator:
@@ -9,3 +14,14 @@ services:
 
     hackzilla_password_generator_dummy:
         class: %hackzilla_password_generator.dummy.class%
+
+    hackzilla_password_generator_computer:
+        class: %hackzilla_password_generator.computer.class%
+
+    hackzilla_password_generator_human:
+        class: %hackzilla_password_generator.human.class%
+        calls:
+          - [setMinWordLength, [%hackzilla_password_generator.human.minWordLength%]]
+          - [setMaxWordLength, [%hackzilla_password_generator.human.maxWordLength%]]
+          - [setWordSeparator, [%hackzilla_password_generator.human.wordSeparator%]]
+          - [setWordList, [%hackzilla_password_generator.human.wordList%]]
