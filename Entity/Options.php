@@ -5,6 +5,7 @@ namespace Hackzilla\Bundle\PasswordGeneratorBundle\Entity;
 class Options
 {
 
+    private $mode;
     private $quantity = 1;
     private $length = 8;
     private $options = array();
@@ -38,6 +39,16 @@ class Options
         }
 
         return $value;
+    }
+
+    public function setMode($mode)
+    {
+        $this->mode = $mode;
+    }
+
+    public function getMode()
+    {
+        return $this->mode;
     }
 
     public function setQuantity($quantity)

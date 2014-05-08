@@ -22,10 +22,12 @@ class GeneratorController extends Controller
      */
     public function formAction(Request $request, $mode = null)
     {
+        $mode = $this->getMode($request, $mode);
         $passwordGenerator = $this->getPasswordGenerator($mode);
 
         $passwords = null;
-        $options = $this->createOptionType($passwordGenerator);
+        $options = $this->createOptionEntity($passwordGenerator, $mode);
+
         $form = $this->buildForm($passwordGenerator, $options);
 
         $form->handleRequest($request);
@@ -70,13 +72,30 @@ class GeneratorController extends Controller
         return $this->container->get($serviceName);
     }
 
-    private function createOptionType(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator)
+    private function getMode(Request $request, $mode)
+    {
+        if (!is_null($mode)) {
+            switch ($request->query->get('mode')) {
+                case 'dummy':
+                case 'human':
+                case 'computer':
+                    return $request->query->get('mode');
+            }
+        }
+
+        return $mode;
+    }
+
+    private function createOptionEntity(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator, $mode)
     {
         $options = new Options($passwordGenerator->getPossibleOptions());
+        $options->setMode($mode);
 
-        if (is_a($passwordGenerator, 'ComputerPasswordGenerator')) {
+        if ($mode == 'computer') {
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
+        } else if ($mode == 'human') {
+            $options->setLength(3);
         }
 
         return $options;
