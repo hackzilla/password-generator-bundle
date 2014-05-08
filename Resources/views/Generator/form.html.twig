@@ -2,6 +2,13 @@
 
 {% block layout %}
     <h2>Create Passwords</h2>
+
+    <div class="password-mode">
+        <p>Make passwords easier for [<a href="http://xkcd.com/936/">citation</a>]:</p>
+        <a href="{{ path('hackzilla_password_generator_human_form') }}" class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">Humans</a>
+        <a href="{{ path('hackzilla_password_generator_computer_form') }}" class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">Computers</a>
+    </div>
+
     {{ form_start(form) }}
         {{ form_errors(form) }}
         {{ form_rest(form) }}
