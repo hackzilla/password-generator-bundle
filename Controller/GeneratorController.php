@@ -97,6 +97,7 @@ class GeneratorController extends Controller
         if ($mode == 'computer') {
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
+            $options->setLength(12);
         } else if ($mode == 'human') {
             $options->setLength(3);
         }
