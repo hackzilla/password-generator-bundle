@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hackzilla\PasswordGenerator\Generator\PasswordGenerator;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
+use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;
 
 /**
  * Password Generator controller.
