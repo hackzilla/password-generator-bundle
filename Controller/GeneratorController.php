@@ -80,6 +80,9 @@ class GeneratorController extends Controller
                 case 'human':
                 case 'computer':
                     return $request->query->get('mode');
+
+                default:
+                    return 'computer';
             }
         }
 
