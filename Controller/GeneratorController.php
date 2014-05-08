@@ -74,7 +74,7 @@ class GeneratorController extends Controller
 
     private function getMode(Request $request, $mode)
     {
-        if (!is_null($mode)) {
+        if (is_null($mode)) {
             switch ($request->query->get('mode')) {
                 case 'dummy':
                 case 'human':
