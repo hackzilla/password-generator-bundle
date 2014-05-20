@@ -1,11 +1,6 @@
 Password Generator Bundle
 =========================
 
-Generate barcodes as html, image or text.
-
-Fork of Folke Ashberg's PHP Barcode v0.4 [http://www.ashberg.de/php-barcode/]
-
-
 For usage and examples see: Resources/doc/index.rst
 
 [![Build Status](https://travis-ci.org/hackzilla/PasswordGeneratorBundle.png?branch=master)](https://travis-ci.org/hackzilla/PasswordGeneratorBundle)
@@ -50,7 +45,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Hackzilla\BarcodeBundle\HackzillaBarcodeBundle(),
+        new Hackzilla\BarcodeBundle\HackzillaPasswordGeneratorBundle(),
     );
 }
 ```
