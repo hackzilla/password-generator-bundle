@@ -3,7 +3,7 @@ Password Generator Bundle
 
 For usage and examples see: Resources/doc/index.rst
 
-[![Build Status](https://travis-ci.org/hackzilla/PasswordGeneratorBundle.png?branch=master)](https://travis-ci.org/hackzilla/PasswordGeneratorBundle)
+[![Build Status](https://travis-ci.org/hackzilla/password-generator-bundle.png?branch=master)](https://travis-ci.org/hackzilla/password-generator-bundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/466fe3cc-04cc-4d4e-a119-2bd874c2cea4/big.png)](https://insight.sensiolabs.com/projects/466fe3cc-04cc-4d4e-a119-2bd874c2cea4)
 
 Requirements
