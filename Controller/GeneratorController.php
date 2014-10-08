@@ -106,7 +106,10 @@ class GeneratorController extends Controller
         } else if ($mode == 'human') {
             $options->setLength(3);
         } else if ($mode == 'hybrid') {
-
+            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_UPPER_CASE)} = true;
+            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
+            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
+            $options->setLength(4);
         }
 
         return $options;
