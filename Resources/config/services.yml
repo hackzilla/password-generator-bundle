@@ -10,7 +10,7 @@ parameters:
     hackzilla_password_generator.hybrid.class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
     hackzilla_password_generator.hybrid.segmentCount: 4
     hackzilla_password_generator.hybrid.segmentLength: 3
-    hackzilla_password_generator.hybrid.wordSeparator: '-'
+    hackzilla_password_generator.hybrid.segmentSeparator: '-'
 
 services:
     hackzilla_password_generator:
