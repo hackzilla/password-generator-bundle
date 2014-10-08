@@ -65,6 +65,10 @@ class GeneratorController extends Controller
                 $serviceName = 'hackzilla_password_generator_human';
                 break;
 
+            case 'hybrid':
+                $serviceName = 'hackzilla_password_generator_hybrid';
+                break;
+
             default:
                 $serviceName = 'hackzilla_password_generator';
         }
@@ -78,6 +82,7 @@ class GeneratorController extends Controller
             switch ($request->query->get('mode')) {
                 case 'dummy':
                 case 'human':
+                case 'hybrid':
                 case 'computer':
                     return $request->query->get('mode');
 
@@ -100,6 +105,8 @@ class GeneratorController extends Controller
             $options->setLength(12);
         } else if ($mode == 'human') {
             $options->setLength(3);
+        } else if ($mode == 'hybrid') {
+
         }
 
         return $options;

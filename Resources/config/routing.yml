@@ -6,6 +6,10 @@ hackzilla_password_generator_human_form:
     pattern:  /human
     defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form", mode: human }
 
+hackzilla_password_generator_hybrid_form:
+    pattern:  /human
+    defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form", mode: hybrid }
+
 hackzilla_password_generator_computer_form:
     pattern:  /computer
     defaults: { _controller: "HackzillaPasswordGeneratorBundle:Generator:form", mode: computer }

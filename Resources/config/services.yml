@@ -7,6 +7,10 @@ parameters:
     hackzilla_password_generator.human.wordSeparator: '-'
     hackzilla_password_generator.human.minWordLength: 4
     hackzilla_password_generator.human.maxWordLength: 99
+    hackzilla_password_generator.hybrid.class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
+    hackzilla_password_generator.hybrid.segmentCount: 4
+    hackzilla_password_generator.hybrid.segmentLength: 3
+    hackzilla_password_generator.hybrid.wordSeparator: '-'
 
 services:
     hackzilla_password_generator:
@@ -25,3 +29,10 @@ services:
           - [setMaxWordLength, [%hackzilla_password_generator.human.maxWordLength%]]
           - [setWordSeparator, [%hackzilla_password_generator.human.wordSeparator%]]
           - [setWordList, [%hackzilla_password_generator.human.wordList%]]
+
+    hackzilla_password_generator_hybrid:
+        class: %hackzilla_password_generator.hybrid.class%
+        calls:
+          - [setSegmentCount, [%hackzilla_password_generator.hybrid.segmentCount%]]
+          - [setSegmentLength, [%hackzilla_password_generator.hybrid.segmentLength%]]
+          - [setSegmentSeparator, [%hackzilla_password_generator.hybrid.segmentSeparator%]]
