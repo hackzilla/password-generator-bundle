@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;
+use Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator;
 
 /**
  * Password Generator controller.
@@ -106,9 +107,9 @@ class GeneratorController extends Controller
         } else if ($mode == 'human') {
             $options->setLength(3);
         } else if ($mode == 'hybrid') {
-            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_UPPER_CASE)} = true;
-            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
-            $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
+            $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_UPPER_CASE)} = true;
+            $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_LOWER_CASE)} = true;
+            $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_NUMBERS)} = true;
             $options->setLength(4);
         }
 
