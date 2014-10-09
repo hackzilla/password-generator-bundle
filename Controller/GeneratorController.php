@@ -2,6 +2,7 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
+use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
@@ -19,6 +20,9 @@ class GeneratorController extends Controller
     /**
      * Password generator form.
      *
+     * @param Request $request
+     * @param string|null $mode
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function formAction(Request $request, $mode = null)
     {
@@ -39,9 +43,9 @@ class GeneratorController extends Controller
         }
 
         return $this->render('HackzillaPasswordGeneratorBundle:Generator:form.html.twig', array(
-                    'form' => $form->createView(),
-                    'mode' => $mode,
-                    'passwords' => $passwords,
+            'form' => $form->createView(),
+            'mode' => $mode,
+            'passwords' => $passwords,
         ));
     }
 
@@ -77,7 +81,15 @@ class GeneratorController extends Controller
         return $this->container->get($serviceName);
     }
 
-    private function getMode(Request $request, $mode)
+    /**
+     * Figure out password generator mode
+     *
+     * @param Request $request
+     * @param string $mode
+     *
+     * @return string
+     */
+    private function getMode(Request $request, $mode = null)
     {
         if (is_null($mode)) {
             switch ($request->query->get('mode')) {
@@ -95,7 +107,12 @@ class GeneratorController extends Controller
         return $mode;
     }
 
-    private function createOptionEntity(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator, $mode)
+    /**
+     * @param PasswordGeneratorInterface $passwordGenerator
+     * @param $mode
+     * @return Options
+     */
+    private function createOptionEntity(PasswordGeneratorInterface $passwordGenerator, $mode)
     {
         $options = new Options($passwordGenerator->getPossibleOptions());
         $options->setMode($mode);
@@ -116,11 +133,19 @@ class GeneratorController extends Controller
         return $options;
     }
 
-    private function buildForm(\Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface $passwordGenerator, $options)
+    /**
+     * Build form
+     *
+     * @param PasswordGeneratorInterface $passwordGenerator
+     * @param array $options
+     *
+     * @return \Symfony\Component\Form\Form
+     */
+    private function buildForm(PasswordGeneratorInterface $passwordGenerator, $options)
     {
         return $this->createForm(new OptionType($passwordGenerator->getPossibleOptions()), $options, array(
-                    'action' => $this->generateUrl('hackzilla_password_generator_show'),
-                    'method' => 'GET',
+            'action' => $this->generateUrl('hackzilla_password_generator_show'),
+            'method' => 'GET',
         ));
     }
 
