@@ -120,14 +120,14 @@ class GeneratorController extends Controller
         if ($mode == 'computer') {
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_LOWER_CASE)} = true;
             $options->{$passwordGenerator->getOptionKey(ComputerPasswordGenerator::OPTION_NUMBERS)} = true;
-            $options->setLength(12);
+            $options->setLength($this->container->getParameter('hackzilla_password_generator.computer.length'));
         } else if ($mode == 'human') {
-            $options->setLength(3);
+            $options->setLength($this->container->getParameter('hackzilla_password_generator.human.length'));
         } else if ($mode == 'hybrid') {
             $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_UPPER_CASE)} = true;
             $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_LOWER_CASE)} = true;
             $options->{$passwordGenerator->getOptionKey(HybridPasswordGenerator::OPTION_NUMBERS)} = true;
-            $options->setLength(4);
+            $options->setLength($this->container->getParameter('hackzilla_password_generator.hybrid.segmentCount'));
         }
 
         return $options;
