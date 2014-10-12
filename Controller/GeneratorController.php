@@ -2,6 +2,7 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
+use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -29,7 +30,7 @@ class GeneratorController extends Controller
         $mode = $this->getMode($request, $mode);
         $passwordGenerator = $this->getPasswordGenerator($mode);
 
-        $passwords = null;
+        $passwords = $error = null;
         $options = $this->createOptionEntity($passwordGenerator, $mode);
 
         $form = $this->buildForm($passwordGenerator, $options);
@@ -39,13 +40,19 @@ class GeneratorController extends Controller
         if ($form->isValid()) {
             $passwordGenerator->setLength($options->getLength());
             $passwordGenerator->setOptions($options->getOptionValue());
-            $passwords = $passwordGenerator->generatePasswords($options->getQuantity());
+
+            try {
+                $passwords = $passwordGenerator->generatePasswords($options->getQuantity());
+            } catch(CharactersNotFoundException $e) {
+                $error = 'CharactersNotFoundException';
+            }
         }
 
         return $this->render('HackzillaPasswordGeneratorBundle:Generator:form.html.twig', array(
             'form' => $form->createView(),
             'mode' => $mode,
             'passwords' => $passwords,
+            'error' => $error,
         ));
     }
 

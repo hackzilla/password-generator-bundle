@@ -20,6 +20,18 @@
         </div>
     {{ form_end(form) }}
 
+    {% if error %}
+        <div class="alert alert-warning" role="alert">
+            <strong>Error!</strong>&nbsp;
+
+                {%- if error == 'CharactersNotFoundException' %}
+                    Select some characters for the password generator to use.
+                {% else %}
+                    An unknown error occurred.
+                {% endif -%}
+        </div>
+    {% endif %}
+
     {% if passwords %}
         <div class="passwords">
             <h2>Passwords</h2>
