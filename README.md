@@ -45,7 +45,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Hackzilla\BarcodeBundle\HackzillaPasswordGeneratorBundle(),
+        new Hackzilla\Bundle\PasswordGeneratorBundle\HackzillaPasswordGeneratorBundle(),
     );
 }
 ```
