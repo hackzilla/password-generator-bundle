@@ -5,30 +5,33 @@
 
     <div class="password-mode">
         <p>Make passwords easier for [<a href="http://xkcd.com/936/">citation</a>]:</p>
-        <a href="{{ path('hackzilla_password_generator_human_form') }}" class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">Humans</a>
-        <a href="{{ path('hackzilla_password_generator_computer_form') }}" class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">Computers</a>
-        <a href="{{ path('hackzilla_password_generator_hybrid_form') }}" class="btn {% if mode == 'hybrid' %}btn-default{% else %}btn-primary{% endif %}">Both</a>
+        <a href="{{ path('hackzilla_password_generator_human_form') }}"
+           class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">Humans</a>
+        <a href="{{ path('hackzilla_password_generator_computer_form') }}"
+           class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">Computers</a>
+        <a href="{{ path('hackzilla_password_generator_hybrid_form') }}"
+           class="btn {% if mode == 'hybrid' %}btn-default{% else %}btn-primary{% endif %}">Both</a>
     </div>
 
     {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_rest(form) }}
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
 
-        <div class="actions">
-            <input type="submit" class="btn btn-primary" value="Generate">
-            <input type="reset" class="btn btn-danger" value="Reset">
-        </div>
+    <div class="actions">
+        <input type="submit" class="btn btn-primary" value="Generate">
+        <input type="reset" class="btn btn-danger" value="Reset">
+    </div>
     {{ form_end(form) }}
 
     {% if error %}
         <div class="alert alert-warning" role="alert">
             <strong>Error!</strong>&nbsp;
 
-                {%- if error == 'CharactersNotFoundException' %}
-                    Select some characters for the password generator to use.
-                {% else %}
-                    An unknown error occurred.
-                {% endif -%}
+            {%- if error == 'CharactersNotFoundException' %}
+                Select some characters for the password generator to use.
+            {% else %}
+                An unknown error occurred.
+            {% endif -%}
         </div>
     {% endif %}
 
@@ -36,9 +39,9 @@
         <div class="passwords">
             <h2>Passwords</h2>
             <ul>
-            {% for password in passwords -%}
-                <li>{{ password }}</li>
-            {% endfor %}
+                {% for password in passwords -%}
+                    <li>{{ password }}</li>
+                {% endfor %}
             </ul>
         </div>
     {% endif %}

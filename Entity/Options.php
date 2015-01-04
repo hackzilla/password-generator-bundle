@@ -2,43 +2,27 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Entity;
 
+use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
+
 class Options
 {
-
     private $mode;
-    private $quantity = 1;
-    private $length = 8;
-    private $options = array();
-    private $actualOptions = array();
+    private $quantity = 5;
+    private $passwordGenerator;
 
-    public function __construct($options)
+    public function __construct(PasswordGeneratorInterface & $passwordGenerator)
     {
-        foreach ($options as $key => $option) {
-            $this->actualOptions[$option['key']] = $key;
-        }
+        $this->passwordGenerator = $passwordGenerator;
     }
 
     public function __get($name)
     {
-        return isset($this->options[$name]) ? $this->options[$name] : false;
+        return $this->passwordGenerator->getOptionValue(strtoupper($name));
     }
 
     public function __set($name, $value)
     {
-        $this->options[$name] = $value;
-    }
-
-    public function getOptionValue()
-    {
-        $value = 0;
-
-        foreach ($this->options as $option => $checked) {
-            if ($checked) {
-                $value += $this->actualOptions[$option];
-            }
-        }
-
-        return $value;
+        $this->passwordGenerator->setOptionValue(strtoupper($name), $value);
     }
 
     public function setMode($mode)
@@ -58,17 +42,6 @@ class Options
 
     public function getQuantity()
     {
-        return (int) $this->quantity;
+        return (int)$this->quantity;
     }
-
-    public function setLength($characterCount)
-    {
-        $this->length = $characterCount;
-    }
-
-    public function getLength()
-    {
-        return (int) $this->length;
-    }
-
 }
