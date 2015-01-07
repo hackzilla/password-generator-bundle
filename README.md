@@ -16,10 +16,10 @@ Installation
 
 Add HackzillaPasswordGeneratorBundle in your composer.json:
 
-```js
+```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "*"
+        "hackzilla/password-generator-bundle": "~1.0"
     }
 }
 ```
