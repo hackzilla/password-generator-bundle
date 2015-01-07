@@ -70,3 +70,9 @@ Example Implementation
 ----------------------
 
 See [Password generator app](https://github.com/hackzilla/password-generator-app)
+
+
+Pull Requests
+-------------
+
+I'm open to pull requests for additional languages, features and/or improvements.
