@@ -27,7 +27,7 @@ class OptionType extends AbstractType
         $builder
             ->add('mode', 'hidden')
             ->add('quantity', 'integer', array(
-                'label' => 'How many passwords',
+                'label' => 'OPTION_HOW_MANY_PASSWORDS',
             ));
 
         foreach ($this->options as $key => $option) {
@@ -54,7 +54,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(strtolower($key), 'text', array(
                 'data' => $option->getValue(),
-                'label' => $key,
+                'label' => 'OPTION_' . $key,
                 'required' => false,
             ))
         );
@@ -66,7 +66,7 @@ class OptionType extends AbstractType
             $builder->create(strtolower($key), 'checkbox', array(
                 'value' => 1,
                 'data' => $option->getValue(),
-                'label' => $key,
+                'label' => 'OPTION_' . $key,
                 'required' => false,
             ))
         );
@@ -77,7 +77,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(strtolower($key), 'integer', array(
                 'data' => $option->getValue(),
-                'label' => $key,
+                'label' => 'OPTION_' .  $key,
                 'required' => false,
             ))
         );

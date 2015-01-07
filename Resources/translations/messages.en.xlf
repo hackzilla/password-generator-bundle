@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+
+            <!-- Headings -->
+            <trans-unit id="1">
+                <source>HEADING_CREATE_PASSWORDS</source>
+                <target>Create Passwords</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>HEADING_SUB_DESCRIPTION</source>
+                <target>Make passwords easier for [%link_start%citation%link_end%]:</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>HEADING_PASSWORDS</source>
+                <target>Passwords</target>
+            </trans-unit>
+
+            <!-- Modes -->
+            <trans-unit id="20">
+                <source>MODE_HUMANS</source>
+                <target>Humans</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>MODE_COMPUTERS</source>
+                <target>Computers</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>MODE_HYBRID</source>
+                <target>Hybrid</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>MODE_DUMMIES</source>
+                <target>Dummies</target>
+            </trans-unit>
+
+
+            <!-- Options -->
+            <trans-unit id="100">
+                <source>OPTION_HOW_MANY_PASSWORDS</source>
+                <target>How many passwords</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>OPTION_UPPERCASE</source>
+                <target>Include Uppercase</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>OPTION_LOWERCASE</source>
+                <target>Include Lowercase</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>OPTION_NUMBERS</source>
+                <target>Include Numbers</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>OPTION_SYMBOLS</source>
+                <target>Include Symbols</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>OPTION_AVOID_SIMILAR</source>
+                <target>Remove Similar Characters</target>
+            </trans-unit>
+
+            <!-- Options / Hybrid -->
+            <trans-unit id="106">
+                <source>OPTION_SEGMENT_COUNT</source>
+                <target>Segment Count</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>OPTION_SEGMENT_LENGTH</source>
+                <target>Segment Length</target>
+            </trans-unit>
+
+            <!-- Options / Computer -->
+            <trans-unit id="108">
+                <source>OPTION_LENGTH</source>
+                <target>Password Length</target>
+            </trans-unit>
+
+            <!-- Options / Human -->
+            <trans-unit id="109">
+                <source>OPTION_WORDS</source>
+                <target>Word Count</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>OPTION_MIN</source>
+                <target>Minimum Word Length</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>OPTION_MAX</source>
+                <target>Maximum Word Length</target>
+            </trans-unit>
+
+
+            <!-- Buttons -->
+            <trans-unit id="200">
+                <source>BUTTON_GENERATE</source>
+                <target>Generate</target>
+            </trans-unit>
+            <trans-unit id="201">
+                <source>BUTTON_RESET</source>
+                <target>Reset</target>
+            </trans-unit>
+
+            <!-- Errors -->
+            <trans-unit id="500">
+                <source>ERROR_HEADING</source>
+                <target>Error!</target>
+            </trans-unit>
+            <trans-unit id="501">
+                <source>ERROR_CHARACTERS_NOT_FOUND_EXCEPTION</source>
+                <target>Select some characters for the password generator to use</target>
+            </trans-unit>
+            <trans-unit id="502">
+                <source>ERROR_UNKNOWN</source>
+                <target>An unknown error occurred</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
