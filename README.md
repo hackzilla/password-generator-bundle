@@ -1,7 +1,10 @@
 Password Generator Bundle
 =========================
 
-For usage and examples see: Resources/doc/index.rst
+Bundle for implementing Hackzilla/password-generator in Symfony.
+
+Simple multilingual bundle to add to any project.
+Languages: English. [Pull Requests welcome]
 
 [![Build Status](https://travis-ci.org/hackzilla/password-generator-bundle.png?branch=master)](https://travis-ci.org/hackzilla/password-generator-bundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/022d0d22-f291-4923-8c03-14e665d94b9c/mini.png)](https://insight.sensiolabs.com/projects/022d0d22-f291-4923-8c03-14e665d94b9c)
@@ -17,21 +20,28 @@ Installation
 
 Add HackzillaPasswordGeneratorBundle in your composer.json:
 
-```js
+```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "*"
+        "hackzilla/password-generator-bundle": "~1.0"
     }
 }
 ```
 
-Now tell composer to download the bundle by running the command:
+Install Composer
 
-``` bash
-$ php composer.phar update hackzilla/password-generator-bundle
+```
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
 ```
 
-Composer will install the bundle to your project's `vendor/hackzilla` directory.
+Now tell composer to download the library by running the command:
+
+``` bash
+$ composer update hackzilla/password-generator
+```
+
+Composer will install the bundle into your project's `vendor/hackzilla` directory.
 
 ### Step 2: Enable the bundle
 
@@ -50,7 +60,23 @@ public function registerBundles()
 }
 ```
 
+### Step 3: Enable Translations
+
+// app/config/config.yml
+```yaml
+framework:
+    #esi:             ~
+    translator:      { fallback: "en" }
+```
+
+
 Example Implementation
 ----------------------
 
 See [Password generator app](https://github.com/hackzilla/password-generator-app)
+
+
+Pull Requests
+-------------
+
+I'm open to pull requests for additional languages, features and/or improvements.

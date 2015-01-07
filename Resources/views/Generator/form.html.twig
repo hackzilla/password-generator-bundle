@@ -1,44 +1,47 @@
 {% extends 'HackzillaPasswordGeneratorBundle::layout.html.twig' %}
 
 {% block layout %}
-    <h2>Create Passwords</h2>
+    <h2>{{ 'HEADING_CREATE_PASSWORDS'|trans }}</h2>
 
     <div class="password-mode">
-        <p>Make passwords easier for [<a href="http://xkcd.com/936/">citation</a>]:</p>
-        <a href="{{ path('hackzilla_password_generator_human_form') }}" class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">Humans</a>
-        <a href="{{ path('hackzilla_password_generator_computer_form') }}" class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">Computers</a>
-        <a href="{{ path('hackzilla_password_generator_hybrid_form') }}" class="btn {% if mode == 'hybrid' %}btn-default{% else %}btn-primary{% endif %}">Both</a>
+        <p>{{ 'HEADING_SUB_DESCRIPTION'|trans({'%link_start%' : '<a href="http://xkcd.com/936/">', '%link_end%' : '</a>'})|raw }}</p>
+        <a href="{{ path('hackzilla_password_generator_human_form') }}"
+           class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_HUMANS'|trans }}</a>
+        <a href="{{ path('hackzilla_password_generator_computer_form') }}"
+           class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_COMPUTERS'|trans }}</a>
+        <a href="{{ path('hackzilla_password_generator_hybrid_form') }}"
+           class="btn {% if mode == 'hybrid' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_HYBRID'|trans }}</a>
     </div>
 
     {{ form_start(form) }}
-        {{ form_errors(form) }}
-        {{ form_rest(form) }}
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
 
-        <div class="actions">
-            <input type="submit" class="btn btn-primary" value="Generate">
-            <input type="reset" class="btn btn-danger" value="Reset">
-        </div>
+    <div class="actions">
+        <input type="submit" class="btn btn-primary" value="{{ 'BUTTON_GENERATE'|trans }}">
+        <input type="reset" class="btn btn-danger" value="{{ 'BUTTON_RESET'|trans }}">
+    </div>
     {{ form_end(form) }}
 
     {% if error %}
         <div class="alert alert-warning" role="alert">
-            <strong>Error!</strong>&nbsp;
+            <strong>{{ 'ERROR_HEADING'|trans }}</strong>&nbsp;
 
-                {%- if error == 'CharactersNotFoundException' %}
-                    Select some characters for the password generator to use.
-                {% else %}
-                    An unknown error occurred.
-                {% endif -%}
+            {%- if error == 'CharactersNotFoundException' %}
+                {{ 'ERROR_CHARACTERS_NOT_FOUND_EXCEPTION'|trans }}.
+            {% else %}
+                {{ 'ERROR_UNKNOWN'|trans }}.
+            {% endif -%}
         </div>
     {% endif %}
 
     {% if passwords %}
         <div class="passwords">
-            <h2>Passwords</h2>
+            <h2>{{ "HEADING_PASSWORDS"|trans }}</h2>
             <ul>
-            {% for password in passwords -%}
-                <li>{{ password }}</li>
-            {% endfor %}
+                {% for password in passwords -%}
+                    <li>{{ password }}</li>
+                {% endfor %}
             </ul>
         </div>
     {% endif %}

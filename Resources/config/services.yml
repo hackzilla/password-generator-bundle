@@ -1,43 +1,43 @@
 parameters:
-    hackzilla_password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
-    hackzilla_password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
-    hackzilla_password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
-    hackzilla_password_generator.computer.length: 12
-    hackzilla_password_generator.human.class: Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator
-    hackzilla_password_generator.human.wordList: /usr/share/dict/words
-    hackzilla_password_generator.human.wordSeparator: '-'
-    hackzilla_password_generator.human.length: 3
-    hackzilla_password_generator.human.minWordLength: 4
-    hackzilla_password_generator.human.maxWordLength: 99
-    hackzilla_password_generator.hybrid.class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
-    hackzilla_password_generator.hybrid.segmentCount: 4
-    hackzilla_password_generator.hybrid.segmentLength: 3
-    hackzilla_password_generator.hybrid.segmentSeparator: '-'
+    hackzilla.password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
+    hackzilla.password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
+    hackzilla.password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
+    hackzilla.password_generator.computer.length: 12
+    hackzilla.password_generator.human.class: Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator
+    hackzilla.password_generator.human.wordList: /usr/share/dict/words
+    hackzilla.password_generator.human.wordSeparator: '-'
+    hackzilla.password_generator.human.wordCount: 3
+    hackzilla.password_generator.human.minWordLength: 5
+    hackzilla.password_generator.human.maxWordLength: 10
+    hackzilla.password_generator.hybrid.class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
+    hackzilla.password_generator.hybrid.segmentCount: 4
+    hackzilla.password_generator.hybrid.segmentLength: 3
+    hackzilla.password_generator.hybrid.segmentSeparator: '-'
 
 services:
-    hackzilla_password_generator:
-        class: %hackzilla_password_generator.class%
+    hackzilla.password_generator:
+        class: %hackzilla.password_generator.class%
 
-    hackzilla_password_generator_dummy:
-        class: %hackzilla_password_generator.dummy.class%
+    hackzilla.password_generator.dummy:
+        class: %hackzilla.password_generator.dummy.class%
 
-    hackzilla_password_generator_computer:
-        class: %hackzilla_password_generator.computer.class%
+    hackzilla.password_generator.computer:
+        class: %hackzilla.password_generator.computer.class%
         calls:
-          - [setLength, [%hackzilla_password_generator.computer.length%]]
+          - [setLength, [%hackzilla.password_generator.computer.length%]]
 
-    hackzilla_password_generator_human:
-        class: %hackzilla_password_generator.human.class%
+    hackzilla.password_generator.human:
+        class: %hackzilla.password_generator.human.class%
         calls:
-          - [setLength, [%hackzilla_password_generator.human.length%]]
-          - [setMinWordLength, [%hackzilla_password_generator.human.minWordLength%]]
-          - [setMaxWordLength, [%hackzilla_password_generator.human.maxWordLength%]]
-          - [setWordSeparator, [%hackzilla_password_generator.human.wordSeparator%]]
-          - [setWordList, [%hackzilla_password_generator.human.wordList%]]
+          - [setWordCount, [%hackzilla.password_generator.human.wordCount%]]
+          - [setMinWordLength, [%hackzilla.password_generator.human.minWordLength%]]
+          - [setMaxWordLength, [%hackzilla.password_generator.human.maxWordLength%]]
+          - [setWordSeparator, [%hackzilla.password_generator.human.wordSeparator%]]
+          - [setWordList, [%hackzilla.password_generator.human.wordList%]]
 
-    hackzilla_password_generator_hybrid:
-        class: %hackzilla_password_generator.hybrid.class%
+    hackzilla.password_generator.hybrid:
+        class: %hackzilla.password_generator.hybrid.class%
         calls:
-          - [setSegmentCount, [%hackzilla_password_generator.hybrid.segmentCount%]]
-          - [setSegmentLength, [%hackzilla_password_generator.hybrid.segmentLength%]]
-          - [setSegmentSeparator, [%hackzilla_password_generator.hybrid.segmentSeparator%]]
+          - [setSegmentCount, [%hackzilla.password_generator.hybrid.segmentCount%]]
+          - [setSegmentLength, [%hackzilla.password_generator.hybrid.segmentLength%]]
+          - [setSegmentSeparator, [%hackzilla.password_generator.hybrid.segmentSeparator%]]

@@ -2,18 +2,20 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type;
 
+use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
+use Hackzilla\PasswordGenerator\Model\Option\Option;
+use Hackzilla\PasswordGenerator\Model\Option\OptionInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class OptionType extends AbstractType
 {
+    private $options;
 
-    private $_options;
-
-    public function __construct(array $options)
+    public function __construct(PasswordGeneratorInterface $passwordGenerator)
     {
-        $this->_options = $options;
+        $this->options = $passwordGenerator->getOptions();
     }
 
     /**
@@ -23,30 +25,62 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('mode', 'hidden')
-        ;
+            ->add('mode', 'hidden')
+            ->add('quantity', 'integer', array(
+                'label' => 'OPTION_HOW_MANY_PASSWORDS',
+            ));
 
-        $builder
-                ->add('quantity', 'integer', array(
-                    'label' => 'How many passwords',
-                ))
-        ;
+        foreach ($this->options as $key => $option) {
+            switch ($option->getType()) {
+                case Option::TYPE_STRING:
+                    $this->addStringType($builder, $key, $option);
+                    break;
 
-        $builder
-                ->add('length', 'integer', array(
-                    'label' => 'Password length',
-                ))
-        ;
+                case Option::TYPE_BOOLEAN:
+                    $this->addBooleanType($builder, $key, $option);
+                    break;
 
-        foreach ($this->_options as $key => $setting) {
-            $builder->add(
-                    $builder->create($setting['key'], 'checkbox', array(
-                        'value' => $key,
-                        'label' => $setting['label'],
-                        'required' => false,
-                    ))
-            );
+                case Option::TYPE_INTEGER:
+                    $this->addIntegerType($builder, $key, $option);
+                    break;
+            }
         }
+
+//        var_dump($builder->all());
+    }
+
+    private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    {
+        $builder->add(
+            $builder->create(strtolower($key), 'text', array(
+                'data' => $option->getValue(),
+                'label' => 'OPTION_' . $key,
+                'required' => false,
+            ))
+        );
+    }
+
+    private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    {
+        $builder->add(
+            $builder->create(strtolower($key), 'checkbox', array(
+                'value' => 1,
+                'data' => $option->getValue(),
+                'label' => 'OPTION_' . $key,
+                'required' => false,
+            ))
+        );
+    }
+
+    private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    {
+        $builder->add(
+            $builder->create(strtolower($key), 'integer', array(
+                'data' => $option->getValue(),
+                'label' => 'OPTION_' .  $key,
+                'required' => false,
+            ))
+        );
     }
 
     /**
