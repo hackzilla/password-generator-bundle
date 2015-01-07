@@ -45,8 +45,6 @@ class OptionType extends AbstractType
                     break;
             }
         }
-
-//        var_dump($builder->all());
     }
 
     private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
