@@ -7,8 +7,8 @@ parameters:
     hackzilla.password_generator.human.wordList: /usr/share/dict/words
     hackzilla.password_generator.human.wordSeparator: '-'
     hackzilla.password_generator.human.wordCount: 3
-    hackzilla.password_generator.human.minWordLength: 4
-    hackzilla.password_generator.human.maxWordLength: 99
+    hackzilla.password_generator.human.minWordLength: 5
+    hackzilla.password_generator.human.maxWordLength: 10
     hackzilla.password_generator.hybrid.class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
     hackzilla.password_generator.hybrid.segmentCount: 4
     hackzilla.password_generator.hybrid.segmentLength: 3
