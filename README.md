@@ -56,6 +56,16 @@ public function registerBundles()
 }
 ```
 
+### Step 3: Enable Translations
+
+// app/config/config.yml
+```yaml
+framework:
+    #esi:             ~
+    translator:      { fallback: "en" }
+```
+
+
 Example Implementation
 ----------------------
 
