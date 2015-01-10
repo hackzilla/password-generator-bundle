@@ -10,7 +10,7 @@
             </trans-unit>
             <trans-unit id="2">
                 <source>HEADING_SUB_DESCRIPTION</source>
-                <target>Make passwords easier for [%link_start%citation%link_end%]:</target>
+                <target>Make passwords easier for:</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>HEADING_PASSWORDS</source>
@@ -102,6 +102,14 @@
                 <source>BUTTON_RESET</source>
                 <target>Reset</target>
             </trans-unit>
+
+
+            <!-- Labels -->
+            <trans-unit id="300">
+                <source>LABEL_CITATION</source>
+                <target>citation</target>
+            </trans-unit>
+
 
             <!-- Errors -->
             <trans-unit id="500">

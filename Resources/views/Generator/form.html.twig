@@ -4,7 +4,7 @@
     <h2>{{ 'HEADING_CREATE_PASSWORDS'|trans }}</h2>
 
     <div class="password-mode">
-        <p>{{ 'HEADING_SUB_DESCRIPTION'|trans({'%link_start%' : '<a href="http://xkcd.com/936/">', '%link_end%' : '</a>'})|raw }}</p>
+        <p>{{ 'HEADING_SUB_DESCRIPTION'|trans }} [<a href="http://xkcd.com/936/">{{ 'LABEL_CITATION'|trans }}</a>]</p>
         <a href="{{ path('hackzilla_password_generator_human_form') }}"
            class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_HUMANS'|trans }}</a>
         <a href="{{ path('hackzilla_password_generator_computer_form') }}"
