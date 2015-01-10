@@ -16,6 +16,10 @@
                 <source>HEADING_PASSWORDS</source>
                 <target>Passwords</target>
             </trans-unit>
+            <trans-unit id="4">
+                  <source>HEADING_DESCRIPTION</source>
+                  <target>Easy to use online random password generator</target>
+            </trans-unit>
 
             <!-- Modes -->
             <trans-unit id="20">
