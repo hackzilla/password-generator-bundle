@@ -6,7 +6,7 @@
             <!-- Headings -->
             <trans-unit id="1">
                 <source>HEADING_CREATE_PASSWORDS</source>
-                <target>Create Passwords</target>
+                <target>Password Generator</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>HEADING_SUB_DESCRIPTION</source>
