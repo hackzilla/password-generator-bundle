@@ -6,7 +6,6 @@ use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 
 class Options
 {
-    private $mode;
     private $quantity = 5;
     private $passwordGenerator;
 
@@ -23,16 +22,6 @@ class Options
     public function __set($name, $value)
     {
         $this->passwordGenerator->setOptionValue(strtoupper($name), $value);
-    }
-
-    public function setMode($mode)
-    {
-        $this->mode = $mode;
-    }
-
-    public function getMode()
-    {
-        return $this->mode;
     }
 
     public function setQuantity($quantity)

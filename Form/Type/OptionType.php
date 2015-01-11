@@ -25,7 +25,6 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mode', 'hidden')
             ->add('quantity', 'integer', array(
                 'label' => 'OPTION_HOW_MANY_PASSWORDS',
             ));
