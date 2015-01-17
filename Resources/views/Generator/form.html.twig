@@ -1,19 +1,6 @@
-{% extends 'HackzillaPasswordGeneratorBundle::layout.html.twig' %}
+{% extends 'HackzillaPasswordGeneratorBundle:Generator:' ~ mode ~ '-layout.html.twig' %}
 
-{% block layout %}
-    <h2>{{ 'HEADING_CREATE_PASSWORDS'|trans }}</h2>
-    <h3>{{ 'HEADING_DESCRIPTION'|trans }}</h3>
-
-    <div class="password-mode">
-        <p>{{ 'HEADING_SUB_DESCRIPTION'|trans }} [<a href="http://xkcd.com/936/">{{ 'LABEL_CITATION'|trans }}</a>]</p>
-        <a href="{{ path('hackzilla_password_generator_human_form') }}"
-           class="btn {% if mode == 'human' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_HUMANS'|trans }}</a>
-        <a href="{{ path('hackzilla_password_generator_computer_form') }}"
-           class="btn {% if mode == 'computer' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_COMPUTERS'|trans }}</a>
-        <a href="{{ path('hackzilla_password_generator_hybrid_form') }}"
-           class="btn {% if mode == 'hybrid' %}btn-default{% else %}btn-primary{% endif %}">{{ 'MODE_HYBRID'|trans }}</a>
-    </div>
-
+{% block form %}
     {{ form_start(form) }}
     {{ form_errors(form) }}
     {{ form_rest(form) }}
@@ -46,4 +33,4 @@
             </ul>
         </div>
     {% endif %}
-{% endblock layout %}
+{% endblock form %}
