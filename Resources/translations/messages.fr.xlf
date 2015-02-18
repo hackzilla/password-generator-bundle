@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+
+            <!-- Headings -->
+            <trans-unit id="1">
+                <source>HEADING_CREATE_PASSWORDS</source>
+                <target>Générateur de mot de passe</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>HEADING_SUB_DESCRIPTION</source>
+                <target>Faire les mots de passe plus facile pour:</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>HEADING_PASSWORDS</source>
+                <target>Mots de passe</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>HEADING_DESCRIPTION</source>
+                <target>Générateur en ligne des mots de passe aléatoires. Facile ‡ utiliser.</target>
+            </trans-unit>
+
+            <!-- Modes -->
+            <trans-unit id="20">
+                <source>MODE_HUMANS</source>
+                <target>Les humain</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>MODE_COMPUTERS</source>
+                <target>Les ordinateurs</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>MODE_HYBRID</source>
+                <target>Hybride</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>MODE_DUMMIES</source>
+                <target>Les nuls</target>
+            </trans-unit>
+
+
+            <!-- Options -->
+            <trans-unit id="100">
+                <source>OPTION_HOW_MANY_PASSWORDS</source>
+                <target>Combien de mots de passe</target>
+            </trans-unit>
+            <trans-unit id="101">
+                <source>OPTION_UPPERCASE</source>
+                <target>Insérer les caractëres majuscule</target>
+            </trans-unit>
+            <trans-unit id="102">
+                <source>OPTION_LOWERCASE</source>
+                <target>Insérer les caractëres miniscule</target>
+            </trans-unit>
+            <trans-unit id="103">
+                <source>OPTION_NUMBERS</source>
+                <target>Insérer les chiffres</target>
+            </trans-unit>
+            <trans-unit id="104">
+                <source>OPTION_SYMBOLS</source>
+                <target>Insérer les symboles</target>
+            </trans-unit>
+            <trans-unit id="105">
+                <source>OPTION_AVOID_SIMILAR</source>
+                <target>Supprimer les caractëres presque pareils</target>
+            </trans-unit>
+
+            <!-- Options / Hybrid -->
+            <trans-unit id="106">
+                <source>OPTION_SEGMENT_COUNT</source>
+                <target>Nombre de segments</target>
+            </trans-unit>
+            <trans-unit id="107">
+                <source>OPTION_SEGMENT_LENGTH</source>
+                <target>longeur du segment</target>
+            </trans-unit>
+
+            <!-- Options / Computer -->
+            <trans-unit id="108">
+                <source>OPTION_LENGTH</source>
+                <target>Longeur du mot de passe</target>
+            </trans-unit>
+
+            <!-- Options / Human -->
+            <trans-unit id="109">
+                <source>OPTION_WORDS</source>
+                <target>Nombre de mots</target>
+            </trans-unit>
+            <trans-unit id="110">
+                <source>OPTION_MIN</source>
+                <target>Longeur minimum du mot de passe</target>
+            </trans-unit>
+            <trans-unit id="111">
+                <source>OPTION_MAX</source>
+                <target>Longeur maximum du mot de passe</target>
+            </trans-unit>
+
+
+            <!-- Buttons -->
+            <trans-unit id="200">
+                <source>BUTTON_GENERATE</source>
+                <target>Gènèrer</target>
+            </trans-unit>
+            <trans-unit id="201">
+                <source>BUTTON_RESET</source>
+                <target>Rèinitialiser</target>
+            </trans-unit>
+
+
+            <!-- Labels -->
+            <trans-unit id="300">
+                <source>LABEL_CITATION</source>
+                <target>citation</target>
+            </trans-unit>
+
+
+            <!-- Errors -->
+            <trans-unit id="500">
+                <source>ERROR_HEADING</source>
+                <target>Erreur!</target>
+            </trans-unit>
+            <trans-unit id="501">
+                <source>ERROR_CHARACTERS_NOT_FOUND_EXCEPTION</source>
+                <target>Sèlectionnez des caractëres pour que le gènèrateur de mot de passe puisse les utiliser</target>
+            </trans-unit>
+            <trans-unit id="502">
+                <source>ERROR_UNKNOWN</source>
+                <target>Une erreur inconnue s'est produite</target>
+            </trans-unit>
+
+        </body>
+    </file>
+</xliff>
