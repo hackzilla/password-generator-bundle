@@ -18,7 +18,7 @@
             </trans-unit>
             <trans-unit id="4">
                 <source>HEADING_DESCRIPTION</source>
-                <target>Générateur en ligne des mots de passe aléatoires. Facile ‡ utiliser.</target>
+                <target>Générateur en ligne des mots de passe aléatoires. Facile à utiliser.</target>
             </trans-unit>
 
             <!-- Modes -->
@@ -47,11 +47,11 @@
             </trans-unit>
             <trans-unit id="101">
                 <source>OPTION_UPPERCASE</source>
-                <target>Insérer les caractëres majuscule</target>
+                <target>Insérer les caractères majuscule</target>
             </trans-unit>
             <trans-unit id="102">
                 <source>OPTION_LOWERCASE</source>
-                <target>Insérer les caractëres miniscule</target>
+                <target>Insérer les caractères miniscule</target>
             </trans-unit>
             <trans-unit id="103">
                 <source>OPTION_NUMBERS</source>
@@ -63,7 +63,7 @@
             </trans-unit>
             <trans-unit id="105">
                 <source>OPTION_AVOID_SIMILAR</source>
-                <target>Supprimer les caractëres presque pareils</target>
+                <target>Supprimer les caractères presque pareils</target>
             </trans-unit>
 
             <!-- Options / Hybrid -->
@@ -122,7 +122,7 @@
             </trans-unit>
             <trans-unit id="501">
                 <source>ERROR_CHARACTERS_NOT_FOUND_EXCEPTION</source>
-                <target>Sélectionnez des caractëres pour que le générateur de mot de passe puisse les utiliser</target>
+                <target>Sélectionnez des caractères pour que le générateur de mot de passe puisse les utiliser</target>
             </trans-unit>
             <trans-unit id="502">
                 <source>ERROR_UNKNOWN</source>
