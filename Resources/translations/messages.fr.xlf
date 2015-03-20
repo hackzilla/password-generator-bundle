@@ -24,7 +24,7 @@
             <!-- Modes -->
             <trans-unit id="20">
                 <source>MODE_HUMANS</source>
-                <target>Les humain</target>
+                <target>Les humains</target>
             </trans-unit>
             <trans-unit id="21">
                 <source>MODE_COMPUTERS</source>
