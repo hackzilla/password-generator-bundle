@@ -9,7 +9,7 @@ class Options
     private $quantity = 5;
     private $passwordGenerator;
 
-    public function __construct(PasswordGeneratorInterface & $passwordGenerator)
+    public function __construct(PasswordGeneratorInterface &$passwordGenerator)
     {
         $this->passwordGenerator = $passwordGenerator;
     }
@@ -31,6 +31,6 @@ class Options
 
     public function getQuantity()
     {
-        return (int)$this->quantity;
+        return (int) $this->quantity;
     }
 }

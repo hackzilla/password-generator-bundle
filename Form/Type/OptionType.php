@@ -20,7 +20,7 @@ class OptionType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -51,7 +51,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(strtolower($key), 'text', array(
                 'data' => $option->getValue(),
-                'label' => 'OPTION_' . $key,
+                'label' => 'OPTION_'.$key,
                 'required' => false,
             ))
         );
@@ -63,7 +63,7 @@ class OptionType extends AbstractType
             $builder->create(strtolower($key), 'checkbox', array(
                 'value' => 1,
                 'data' => $option->getValue(),
-                'label' => 'OPTION_' . $key,
+                'label' => 'OPTION_'.$key,
                 'required' => false,
             ))
         );
@@ -74,7 +74,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(strtolower($key), 'integer', array(
                 'data' => $option->getValue(),
-                'label' => 'OPTION_' .  $key,
+                'label' => 'OPTION_'.$key,
                 'required' => false,
             ))
         );
@@ -98,5 +98,4 @@ class OptionType extends AbstractType
     {
         return '';
     }
-
 }
