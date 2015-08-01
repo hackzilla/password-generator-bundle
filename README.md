@@ -14,8 +14,7 @@ Requirements
 
 * PHP >= 5.3.2
 * [hackzilla/password-generator](https://github.com/hackzilla/password-generator) ~1.0
-* symfony/framework-bundle ~2.3
-* symfony/form ~2.3
+* symfony ~2.3
 
 
 Installation
