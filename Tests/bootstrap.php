@@ -5,5 +5,5 @@ if (is_file('vendor/autoload.php')) {
 } else if (is_file($autoloadFile = __DIR__ . '/../vendor/autoload.php')) {
     require $autoloadFile;
 } else {
-    throw new \LogicException('Run "composer install --dev" to create autoloader.');
+    throw new \LogicException('Run "composer install" to create autoloader.');
 }
