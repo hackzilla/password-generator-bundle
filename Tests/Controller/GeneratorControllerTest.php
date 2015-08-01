@@ -24,6 +24,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider serviceProvider
+     *
      * @param string $mode
      * @param string $check
      */
@@ -33,14 +34,14 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
         $container
             ->method('get')
-            ->will($this->returnCallback(function($service) {
+            ->will($this->returnCallback(function ($service) {
                 return $service;
             }));
 
         $this->_object->setContainer($container);
         $returnValue = $this->invokeMethod($this->_object, 'getPasswordGenerator', array($mode));
 
-        $this->assertEquals($check, $returnValue);
+        $this->assertSame($check, $returnValue);
     }
 
     public function modeProvider()
@@ -56,6 +57,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider modeProvider
+     *
      * @param string $mode
      * @param string $check
      */
@@ -64,7 +66,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
         $request = new \Symfony\Component\HttpFoundation\Request(array('mode' => $mode));
         $returnValue = $this->invokeMethod($this->_object, 'getMode', array($request, $mode));
 
-        $this->assertEquals($check, $returnValue);
+        $this->assertSame($check, $returnValue);
     }
 
     public function nullModeProvider()
@@ -80,6 +82,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider nullModeProvider
+     *
      * @param string $mode
      * @param string $check
      */
@@ -89,7 +92,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
         $returnValue = $this->invokeMethod($this->_object, 'getMode', array($request, null));
 
-        $this->assertEquals($check, $returnValue);
+        $this->assertSame($check, $returnValue);
     }
 
     /**

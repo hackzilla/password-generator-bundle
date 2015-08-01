@@ -25,14 +25,15 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider quantityProvider
+     *
      * @param mixed $quantity
-     * @param integer $check
+     * @param int   $check
      */
     public function testQuantity($quantity, $check)
     {
         $this->_object->setQuantity($quantity);
 
-        $this->assertEquals($check, $this->_object->getQuantity());
+        $this->assertSame($check, $this->_object->getQuantity());
     }
 
     public function optionProvider()
@@ -46,14 +47,15 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider optionProvider
+     *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      */
     public function testOption($key, $value)
     {
         $this->_object->{$key} = $value;
 
-        $this->assertEquals($value, $this->_object->{$key});
+        $this->assertSame($value, $this->_object->{$key});
     }
 
     public function testOptionFailure()
@@ -63,4 +65,3 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
         $this->_object->{'non_existent'};
     }
 }
- 

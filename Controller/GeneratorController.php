@@ -11,15 +11,15 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Password Generator controller.
- *
  */
 class GeneratorController extends Controller
 {
     /**
      * Password generator form.
      *
-     * @param Request $request
+     * @param Request     $request
      * @param string|null $mode
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function formAction(Request $request, $mode = null)
@@ -51,7 +51,7 @@ class GeneratorController extends Controller
     }
 
     /**
-     * Lookup Password Generator Service
+     * Lookup Password Generator Service.
      *
      * @param string $mode
      *
@@ -64,7 +64,7 @@ class GeneratorController extends Controller
             case 'computer':
             case 'human':
             case 'hybrid':
-                $serviceName = 'hackzilla.password_generator.' . $mode;
+                $serviceName = 'hackzilla.password_generator.'.$mode;
                 break;
 
             default:
@@ -75,10 +75,10 @@ class GeneratorController extends Controller
     }
 
     /**
-     * Figure out password generator mode
+     * Figure out password generator mode.
      *
      * @param Request $request
-     * @param string $mode
+     * @param string  $mode
      *
      * @return string
      */
@@ -101,11 +101,11 @@ class GeneratorController extends Controller
     }
 
     /**
-     * Build form
+     * Build form.
      *
      * @param PasswordGeneratorInterface $passwordGenerator
-     * @param Options $options
-     * @param string $mode
+     * @param Options                    $options
+     * @param string                     $mode
      *
      * @return \Symfony\Component\Form\Form
      */
@@ -116,5 +116,4 @@ class GeneratorController extends Controller
             'method' => 'GET',
         ));
     }
-
 }
