@@ -67,9 +67,12 @@ public function registerBundles()
 
 // app/config/config.yml
 ```yaml
+parameters:
+    locale: en
+
 framework:
     #esi:             ~
-    translator:      { fallback: "en" }
+    translator:      { fallbacks: ["%locale%"] }
 ```
 
 
