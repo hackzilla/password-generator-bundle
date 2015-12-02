@@ -25,13 +25,14 @@ matrix:
     - php: 5.6
       env: SYMFONY_VERSION=2.7.*
     - php: 5.6
-      env: SYMFONY_VERSION=2.8.*@dev
+      env: SYMFONY_VERSION=2.8.*
     - php: 5.6
-      env: SYMFONY_VERSION="3.0.x-dev as 2.8"
+      env: SYMFONY_VERSION=3.0.*
+    - php: 5.6
+      env: SYMFONY_VERSION="3.1.*@dev"
   allow_failures:
     - php: nightly
-    - env: SYMFONY_VERSION=2.8.*@dev
-    - env: SYMFONY_VERSION="3.0.x-dev as 2.8"
+    - env: SYMFONY_VERSION="3.1.*@dev"
 
 sudo: false
 
