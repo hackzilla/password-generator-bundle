@@ -3,8 +3,10 @@ Password Generator Bundle
 
 Bundle for implementing Hackzilla/password-generator in Symfony.
 
-Simple multilingual bundle to add to any project.
-Languages: English. [Pull Requests welcome]
+Simple multilingual bundle to add to any project. Available languages (Pull Requests welcome):
+
+* English
+* French
 
 [![Build Status](https://travis-ci.org/hackzilla/password-generator-bundle.png?branch=master)](https://travis-ci.org/hackzilla/password-generator-bundle)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/022d0d22-f291-4923-8c03-14e665d94b9c/mini.png)](https://insight.sensiolabs.com/projects/022d0d22-f291-4923-8c03-14e665d94b9c)
