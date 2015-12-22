@@ -89,19 +89,7 @@ class OptionType extends AbstractType
         ));
     }
 
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
-    {
-        $this->configureOptions($resolver);
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
+    public function getBlockPrefix()
     {
         return '';
     }
