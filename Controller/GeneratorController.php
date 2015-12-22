@@ -4,7 +4,6 @@ namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
-use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
