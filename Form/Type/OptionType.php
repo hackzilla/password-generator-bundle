@@ -8,20 +8,9 @@ use Hackzilla\PasswordGenerator\Model\Option\OptionInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class OptionType extends AbstractType
 {
-    /**
-     * @var Option[]
-     */
-    private $options;
-
-    public function __construct(PasswordGeneratorInterface $passwordGenerator)
-    {
-        $this->options = $passwordGenerator->getOptions();
-    }
-
     /**
      * @param FormBuilderInterface $builder
      * @param array                $options
@@ -29,11 +18,15 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', 'integer', array(
+            ->add('quantity', 'Symfony\Component\Form\Extension\Core\Type\IntegerType', array(
                 'label' => 'OPTION_HOW_MANY_PASSWORDS',
             ));
 
-        foreach ($this->options as $key => $option) {
+        if (!is_a($options['generator'], 'Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface')) {
+            return;
+        }
+
+        foreach ($options['generator']->getOptions() as $key => $option) {
             switch ($option->getType()) {
                 case Option::TYPE_STRING:
                     $this->addStringType($builder, $key, $option);
@@ -92,6 +85,7 @@ class OptionType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
             'csrf_protection' => false,
+            'generator' => null,
         ));
     }
 

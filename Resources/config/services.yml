@@ -37,3 +37,6 @@ services:
           - [setSegmentCount, [%hackzilla.password_generator.hybrid.segment_count%]]
           - [setSegmentLength, [%hackzilla.password_generator.hybrid.segment_length%]]
           - [setSegmentSeparator, [%hackzilla.password_generator.hybrid.segment_separator%]]
+
+    hackzilla.password_generator.form.type.options:
+        class: Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType

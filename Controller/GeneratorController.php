@@ -114,9 +114,12 @@ class GeneratorController extends Controller
      */
     private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
     {
-        return $this->createForm(new OptionType($passwordGenerator), $options, array(
-            'action' => $this->generateUrl('hackzilla_password_generator_show', array('mode' => $mode)),
+        return $this->createForm('Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType', $options, array(
+            'action' => $this->generateUrl('hackzilla_password_generator_show', array(
+                'mode' => $mode,
+            )),
             'method' => 'GET',
+            'generator' => $passwordGenerator,
         ));
     }
 }
