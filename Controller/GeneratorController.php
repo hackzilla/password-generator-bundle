@@ -3,6 +3,7 @@
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
@@ -56,6 +57,8 @@ class GeneratorController extends Controller
      * @param string $mode
      *
      * @return PasswordGeneratorInterface
+     *
+     * @throws UnknownGeneratorException
      */
     private function getPasswordGenerator($mode)
     {
@@ -68,7 +71,7 @@ class GeneratorController extends Controller
                 break;
 
             default:
-                $serviceName = 'hackzilla.password_generator';
+                throw new UnknownGeneratorException();
         }
 
         return $this->container->get($serviceName);

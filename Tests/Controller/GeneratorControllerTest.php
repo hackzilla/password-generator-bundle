@@ -18,7 +18,6 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
             array('computer', 'hackzilla.password_generator.computer'),
             array('human', 'hackzilla.password_generator.human'),
             array('hybrid', 'hackzilla.password_generator.hybrid'),
-            array('non-existent', 'hackzilla.password_generator'),
         );
     }
 
@@ -42,6 +41,22 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
         $returnValue = $this->invokeMethod($this->_object, 'getPasswordGenerator', array($mode));
 
         $this->assertSame($check, $returnValue);
+    }
+
+    public function testGetPasswordGeneratorException()
+    {
+        $container = $this->getMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+
+        $container
+            ->method('get')
+            ->will($this->returnCallback(function ($service) {
+                return $service;
+            }));
+
+        $this->_object->setContainer($container);
+
+        $this->setExpectedException('Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException');
+        $this->invokeMethod($this->_object, 'getPasswordGenerator', array('non-existent'));
     }
 
     public function modeProvider()

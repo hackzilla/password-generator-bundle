@@ -1,5 +1,4 @@
 parameters:
-    hackzilla.password_generator.class: Hackzilla\PasswordGenerator\Generator\PasswordGenerator
     hackzilla.password_generator.dummy.class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
     hackzilla.password_generator.computer.class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
     hackzilla.password_generator.computer.length: 12
@@ -15,9 +14,6 @@ parameters:
     hackzilla.password_generator.hybrid.segmentSeparator: '-'
 
 services:
-    hackzilla.password_generator:
-        class: %hackzilla.password_generator.class%
-
     hackzilla.password_generator.dummy:
         class: %hackzilla.password_generator.dummy.class%
 
