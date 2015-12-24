@@ -14,9 +14,18 @@ Simple multilingual bundle to add to any project. Available languages (Pull Requ
 Requirements
 ------------
 
-* PHP >= 5.3.2
+* PHP >= 5.5
 * [hackzilla/password-generator](https://github.com/hackzilla/password-generator) ~1.0
-* symfony ~2.3
+* Symfony ~2.7|~3.0
+
+
+Version Matrix
+--------------
+
+| Password Generator Bundle | Symfony   | PHP   |
+| ------------------------- | --------- | ----- |
+| 2.x (master)              | ~2.7|~3.0 | >=5.5 |
+| 1.x                       | ~2.3      | >=5.3 |
 
 
 Installation
@@ -27,7 +36,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "~1.0"
+        "hackzilla/password-generator-bundle": "~2.0"
     }
 }
 ```
@@ -76,6 +85,17 @@ framework:
     translator:      { fallbacks: ["%locale%"] }
 ```
 
+Migrating from v1
+-----------------
+
+Migration should be straight forward, as much of the changes are related to Symfony v3
+
+* Upgrade to at least PHP 5.5
+* Reference Types by Fully Qualified Class Name (FQCN)
+* FormTypes use getBlockPrefix, rather than getName
+* OptionType is now a service
+* CamelCased services are now lowercase with separator (e.g. hackzilla.password_generator.human.maxWordLength changed to hackzilla.password_generator.human.max_word_length)
+* Removed previously deprecated service (hackzilla.password_generator).
 
 Example Implementation
 ----------------------
