@@ -46,6 +46,11 @@ class OptionType extends AbstractType
         }
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param                      $key
+     * @param OptionInterface      $option
+     */
     private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
@@ -57,6 +62,11 @@ class OptionType extends AbstractType
         );
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param                      $key
+     * @param OptionInterface      $option
+     */
     private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
@@ -69,6 +79,11 @@ class OptionType extends AbstractType
         );
     }
 
+    /**
+     * @param FormBuilderInterface $builder
+     * @param                      $key
+     * @param OptionInterface      $option
+     */
     private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
