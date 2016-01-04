@@ -19,6 +19,15 @@ Requirements
 * symfony ~2.3
 
 
+Version Matrix
+--------------
+
+| Password Generator Bundle | Symfony   | PHP   |
+| ------------------------- | --------- | ----- |
+| 2.x (master)              | ~2.8|~3.0 | >=5.5 |
+| 1.x                       | ~2.3      | >=5.3 |
+
+
 Installation
 ------------
 
