@@ -6,6 +6,9 @@ use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Hackzilla\PasswordGenerator\Model\Option\Option;
 use Hackzilla\PasswordGenerator\Model\Option\OptionInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,9 +21,9 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', 'Symfony\Component\Form\Extension\Core\Type\IntegerType', array(
-                'label' => 'OPTION_HOW_MANY_PASSWORDS',
-            ));
+            ->add('quantity', IntegerType::class, [
+                    'label' => 'OPTION_HOW_MANY_PASSWORDS',
+            ]);
 
         if (!is_a($options['generator'], 'Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface')) {
             return;
@@ -46,34 +49,34 @@ class OptionType extends AbstractType
     private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'text', array(
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
-                'required' => false,
-            ))
+            $builder->create(strtolower($key), TextType::class, [
+                    'data'     => $option->getValue(),
+                    'label'    => 'OPTION_'.$key,
+                    'required' => false,
+            ])
         );
     }
 
     private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'checkbox', array(
-                'value' => 1,
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
-                'required' => false,
-            ))
+            $builder->create(strtolower($key), CheckboxType::class, [
+                    'value'    => 1,
+                    'data'     => $option->getValue(),
+                    'label'    => 'OPTION_'.$key,
+                    'required' => false,
+            ])
         );
     }
 
     private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'integer', array(
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
-                'required' => false,
-            ))
+            $builder->create(strtolower($key), IntegerType::class, [
+                    'data'     => $option->getValue(),
+                    'label'    => 'OPTION_'.$key,
+                    'required' => false,
+            ])
         );
     }
 
@@ -82,11 +85,13 @@ class OptionType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
-            'csrf_protection' => false,
-            'generator' => null,
-        ));
+        $resolver->setDefaults(
+            array(
+                'data_class'      => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
+                'csrf_protection' => false,
+                'generator'       => null,
+            )
+        );
     }
 
     public function getBlockPrefix()
