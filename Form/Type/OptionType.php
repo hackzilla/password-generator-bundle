@@ -22,9 +22,13 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', IntegerType::class, [
+            ->add(
+                'quantity',
+                IntegerType::class,
+                [
                     'label' => 'OPTION_HOW_MANY_PASSWORDS',
-            ]);
+                ]
+            );
 
         if (!is_a($options['generator'], PasswordGeneratorInterface::class)) {
             return;
@@ -55,11 +59,15 @@ class OptionType extends AbstractType
     private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), TextType::class, [
+            $builder->create(
+                strtolower($key),
+                TextType::class,
+                [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
                     'required' => false,
-            ])
+                ]
+            )
         );
     }
 
@@ -71,12 +79,16 @@ class OptionType extends AbstractType
     private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), CheckboxType::class, [
+            $builder->create(
+                strtolower($key),
+                CheckboxType::class,
+                [
                     'value'    => 1,
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
                     'required' => false,
-            ])
+                ]
+            )
         );
     }
 
@@ -88,11 +100,15 @@ class OptionType extends AbstractType
     private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), IntegerType::class, [
+            $builder->create(
+                strtolower($key),
+                IntegerType::class,
+                [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
                     'required' => false,
-            ])
+                ]
+            )
         );
     }
 
@@ -102,11 +118,11 @@ class OptionType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(
-            array(
+            [
                 'data_class'      => Options::class,
                 'csrf_protection' => false,
                 'generator'       => null,
-            )
+            ]
         );
     }
 
