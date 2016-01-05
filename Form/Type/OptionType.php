@@ -2,6 +2,7 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type;
 
+use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Hackzilla\PasswordGenerator\Model\Option\Option;
 use Hackzilla\PasswordGenerator\Model\Option\OptionInterface;
@@ -25,7 +26,7 @@ class OptionType extends AbstractType
                     'label' => 'OPTION_HOW_MANY_PASSWORDS',
             ]);
 
-        if (!is_a($options['generator'], 'Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface')) {
+        if (!is_a($options['generator'], PasswordGeneratorInterface::class)) {
             return;
         }
 
@@ -102,7 +103,7 @@ class OptionType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class'      => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
+                'data_class'      => Options::class,
                 'csrf_protection' => false,
                 'generator'       => null,
             )
