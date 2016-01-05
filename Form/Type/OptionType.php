@@ -110,6 +110,11 @@ class OptionType extends AbstractType
         );
     }
 
+    public function getName()
+    {
+        return $this->getBlockPrefix();
+    }
+
     public function getBlockPrefix()
     {
         return '';
