@@ -3,6 +3,7 @@
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
 use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
@@ -113,7 +114,7 @@ class GeneratorController extends Controller
      */
     private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
     {
-        return $this->createForm('Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType', $options, array(
+        return $this->createForm(method_exists(AbstractType::class, 'getBlockPrefix') ? OptionType::class : new OptionType(), $options, array(
             'action' => $this->generateUrl('hackzilla_password_generator_show', array(
                 'mode' => $mode,
             )),

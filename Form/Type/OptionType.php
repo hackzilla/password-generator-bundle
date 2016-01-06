@@ -24,7 +24,7 @@ class OptionType extends AbstractType
         $builder
             ->add(
                 'quantity',
-                IntegerType::class,
+                method_exists(AbstractType::class, 'getBlockPrefix') ? IntegerType::class : 'integer',
                 [
                     'label' => 'OPTION_HOW_MANY_PASSWORDS',
                 ]
@@ -61,7 +61,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                TextType::class,
+                method_exists(AbstractType::class, 'getBlockPrefix') ? TextType::class : 'text',
                 [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
@@ -81,7 +81,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                CheckboxType::class,
+                method_exists(AbstractType::class, 'getBlockPrefix') ? CheckboxType::class : 'checkbox',
                 [
                     'value'    => 1,
                     'data'     => $option->getValue(),
@@ -102,7 +102,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                IntegerType::class,
+                method_exists(AbstractType::class, 'getBlockPrefix') ? IntegerType::class : 'integer',
                 [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
