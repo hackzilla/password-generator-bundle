@@ -40,3 +40,5 @@ services:
 
     hackzilla.password_generator.form.type.options:
         class: Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType
+        tags:
+            - { name: form.type }
