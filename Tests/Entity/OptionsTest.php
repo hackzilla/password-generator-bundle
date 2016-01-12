@@ -14,13 +14,13 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
     public function quantityProvider()
     {
-        return array(
-            array(1, 1),
-            array(10, 10),
-            array(100, 100),
-            array('', 0),
-            array('test', 0),
-        );
+        return [
+            [1, 1],
+            [10, 10],
+            [100, 100],
+            ['', 0],
+            ['test', 0],
+        ];
     }
 
     /**
@@ -38,11 +38,11 @@ class OptionsTest extends \PHPUnit_Framework_TestCase
 
     public function optionProvider()
     {
-        return array(
-            array('LENGTH', 1),
-            array('LenGTh', 10),
-            array('length', 100),
-        );
+        return [
+            ['LENGTH', 1],
+            ['LenGTh', 10],
+            ['length', 100],
+        ];
     }
 
     /**

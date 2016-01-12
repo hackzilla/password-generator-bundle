@@ -24,13 +24,13 @@ class Options
         $this->passwordGenerator->setOptionValue(strtoupper($name), $value);
     }
 
-    public function setQuantity($quantity)
-    {
-        $this->quantity = $quantity;
-    }
-
     public function getQuantity()
     {
         return (int) $this->quantity;
+    }
+
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
     }
 }

@@ -10,7 +10,7 @@ return Symfony\CS\Config\Config::create()
         '-psr0',
         'newline_after_open_tag',
         'ordered_use',
-        'long_array_syntax',
+        'short_array_syntax',
         'php_unit_construct',
         'php_unit_strict'
     ])

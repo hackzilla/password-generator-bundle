@@ -8,6 +8,7 @@ use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -43,12 +44,14 @@ class GeneratorController extends Controller
             }
         }
 
-        return $this->render('HackzillaPasswordGeneratorBundle:Generator:form.html.twig', array(
-            'form' => $form->createView(),
-            'mode' => $mode,
-            'passwords' => $passwords,
-            'error' => $error,
-        ));
+        return $this->render(
+            'HackzillaPasswordGeneratorBundle:Generator:form.html.twig', [
+                'form'      => $form->createView(),
+                'mode'      => $mode,
+                'passwords' => $passwords,
+                'error'     => $error,
+            ]
+        );
     }
 
     /**
@@ -114,9 +117,16 @@ class GeneratorController extends Controller
      */
     private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
     {
-        return $this->createForm(new OptionType($passwordGenerator), $options, array(
-            'action' => $this->generateUrl('hackzilla_password_generator_show', array('mode' => $mode)),
-            'method' => 'GET',
-        ));
+        return $this->createForm(
+            method_exists(AbstractType::class, 'getBlockPrefix') ? OptionType::class : new OptionType(), $options, [
+            'action'    => $this->generateUrl(
+                'hackzilla_password_generator_show',
+                [
+                    'mode' => $mode,
+                ]
+            ),
+            'method'    => 'GET',
+            'generator' => $passwordGenerator,
+        ]);
     }
 }
