@@ -33,7 +33,7 @@ class OptionTypeTest extends TypeTestCase
     public function testAddStringType()
     {
         $option = new StringOption();
-        $option->setValue("test");
+        $option->setValue('test');
 
         $type = new OptionType();
 

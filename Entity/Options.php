@@ -26,7 +26,7 @@ class Options
 
     public function getQuantity()
     {
-        return (int)$this->quantity;
+        return (int) $this->quantity;
     }
 
     public function setQuantity($quantity)
