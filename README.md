@@ -24,8 +24,8 @@ Version Matrix
 
 | Password Generator Bundle | Symfony   | PHP   |
 | ------------------------- | --------- | ----- |
-| 2.x (master)              | ~2.7|~3.0 | >=5.5 |
-| 1.x                       | ~2.3      | >=5.3 |
+| 2.x (master)              | ^2.7|^3.0 | >=5.5 |
+| 1.x                       | ^2.3      | >=5.3 |
 
 
 Installation
@@ -36,7 +36,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "~2.0"
+        "hackzilla/password-generator-bundle": "^2.0.0"
     }
 }
 ```

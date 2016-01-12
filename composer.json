@@ -12,13 +12,13 @@
     ],
     "require": {
         "php": "^5.5 || ^7.0",
-        "hackzilla/password-generator": "~1.0",
-        "symfony/framework-bundle": "~2.7|~3.0",
-        "symfony/form": "~2.7|~3.0"
+        "hackzilla/password-generator": "^1.0",
+        "symfony/framework-bundle": "^2.7|^3.0",
+        "symfony/form": "^2.7|^3.0"
     },
     "require-dev": {
-        "satooshi/php-coveralls": "~0.6",
-        "symfony/phpunit-bridge": "~2.7|~3.0"
+        "satooshi/php-coveralls": "^1.0",
+        "symfony/phpunit-bridge": "^2.7|^3.0"
     },
     "autoload": {
         "psr-4": {
