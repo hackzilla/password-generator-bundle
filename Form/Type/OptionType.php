@@ -29,9 +29,9 @@ class OptionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('quantity', 'integer', array(
+            ->add('quantity', 'integer', [
                 'label' => 'OPTION_HOW_MANY_PASSWORDS',
-            ));
+            ]);
 
         foreach ($this->options as $key => $option) {
             switch ($option->getType()) {
@@ -53,34 +53,34 @@ class OptionType extends AbstractType
     private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'text', array(
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
+            $builder->create(strtolower($key), 'text', [
+                'data'     => $option->getValue(),
+                'label'    => 'OPTION_'.$key,
                 'required' => false,
-            ))
+            ])
         );
     }
 
     private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'checkbox', array(
-                'value' => 1,
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
+            $builder->create(strtolower($key), 'checkbox', [
+                'value'    => 1,
+                'data'     => $option->getValue(),
+                'label'    => 'OPTION_'.$key,
                 'required' => false,
-            ))
+            ])
         );
     }
 
     private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
     {
         $builder->add(
-            $builder->create(strtolower($key), 'integer', array(
-                'data' => $option->getValue(),
-                'label' => 'OPTION_'.$key,
+            $builder->create(strtolower($key), 'integer', [
+                'data'     => $option->getValue(),
+                'label'    => 'OPTION_'.$key,
                 'required' => false,
-            ))
+            ])
         );
     }
 
@@ -89,12 +89,11 @@ class OptionType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
+        $resolver->setDefaults([
+            'data_class'      => 'Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options',
             'csrf_protection' => false,
-        ));
+        ]);
     }
-
 
     /**
      * {@inheritdoc}
