@@ -59,9 +59,9 @@ class GeneratorController extends Controller
      *
      * @param string $mode
      *
-     * @return PasswordGeneratorInterface
-     *
      * @throws UnknownGeneratorException
+     *
+     * @return PasswordGeneratorInterface
      */
     private function getPasswordGenerator($mode)
     {
