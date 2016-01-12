@@ -91,7 +91,7 @@ Migrating from v1
 Migration should be straight forward, as much of the changes are related to Symfony v3
 
 * Upgrade to at least PHP 5.5
-* Reference Types by Fully Qualified Class Name (FQCN)
+* Reference Types by Fully Qualified Class Name (FQCN) (>= Symfony 2.8)
 * FormTypes use getBlockPrefix, rather than getName
 * OptionType is now a service
 * CamelCased services are now lowercase with separator (e.g. hackzilla.password_generator.human.maxWordLength changed to hackzilla.password_generator.human.max_word_length)
