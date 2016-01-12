@@ -13,12 +13,12 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
     public function serviceProvider()
     {
-        return array(
-            array('dummy', 'hackzilla.password_generator.dummy'),
-            array('computer', 'hackzilla.password_generator.computer'),
-            array('human', 'hackzilla.password_generator.human'),
-            array('hybrid', 'hackzilla.password_generator.hybrid'),
-        );
+        return [
+            ['dummy', 'hackzilla.password_generator.dummy'],
+            ['computer', 'hackzilla.password_generator.computer'],
+            ['human', 'hackzilla.password_generator.human'],
+            ['hybrid', 'hackzilla.password_generator.hybrid'],
+        ];
     }
 
     /**
@@ -33,79 +33,16 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
         $container
             ->method('get')
-            ->will($this->returnCallback(function ($service) {
-                return $service;
-            }));
+            ->will(
+                $this->returnCallback(
+                    function ($service) {
+                        return $service;
+                    }
+                )
+            );
 
         $this->_object->setContainer($container);
-        $returnValue = $this->invokeMethod($this->_object, 'getPasswordGenerator', array($mode));
-
-        $this->assertSame($check, $returnValue);
-    }
-
-    public function testGetPasswordGeneratorException()
-    {
-        $container = $this->getMock('\Symfony\Component\DependencyInjection\ContainerInterface');
-
-        $container
-            ->method('get')
-            ->will($this->returnCallback(function ($service) {
-                return $service;
-            }));
-
-        $this->_object->setContainer($container);
-
-        $this->setExpectedException('Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException');
-        $this->invokeMethod($this->_object, 'getPasswordGenerator', array('non-existent'));
-    }
-
-    public function modeProvider()
-    {
-        return array(
-            array('dummy', 'dummy'),
-            array('computer', 'computer'),
-            array('human', 'human'),
-            array('hybrid', 'hybrid'),
-            array('', ''),
-        );
-    }
-
-    /**
-     * @dataProvider modeProvider
-     *
-     * @param string $mode
-     * @param string $check
-     */
-    public function testGetMode($mode, $check)
-    {
-        $request = new \Symfony\Component\HttpFoundation\Request(array('mode' => $mode));
-        $returnValue = $this->invokeMethod($this->_object, 'getMode', array($request, $mode));
-
-        $this->assertSame($check, $returnValue);
-    }
-
-    public function nullModeProvider()
-    {
-        return array(
-            array('dummy', 'dummy'),
-            array('computer', 'computer'),
-            array('human', 'human'),
-            array('hybrid', 'hybrid'),
-            array('', 'computer'),
-        );
-    }
-
-    /**
-     * @dataProvider nullModeProvider
-     *
-     * @param string $mode
-     * @param string $check
-     */
-    public function testGetModeNull($mode, $check)
-    {
-        $request = new \Symfony\Component\HttpFoundation\Request(array('mode' => $mode));
-
-        $returnValue = $this->invokeMethod($this->_object, 'getMode', array($request, null));
+        $returnValue = $this->invokeMethod($this->_object, 'getPasswordGenerator', [$mode]);
 
         $this->assertSame($check, $returnValue);
     }
@@ -119,12 +56,83 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
      *
      * @return mixed Method return.
      */
-    private function invokeMethod(&$object, $methodName, array $parameters = array())
+    private function invokeMethod(&$object, $methodName, array $parameters = [])
     {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
 
         return $method->invokeArgs($object, $parameters);
+    }
+
+    public function testGetPasswordGeneratorException()
+    {
+        $container = $this->getMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+
+        $container
+            ->method('get')
+            ->will(
+                $this->returnCallback(
+                    function ($service) {
+                        return $service;
+                    }
+                )
+            );
+
+        $this->_object->setContainer($container);
+
+        $this->setExpectedException('Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException');
+        $this->invokeMethod($this->_object, 'getPasswordGenerator', ['non-existent']);
+    }
+
+    public function modeProvider()
+    {
+        return [
+            ['dummy', 'dummy'],
+            ['computer', 'computer'],
+            ['human', 'human'],
+            ['hybrid', 'hybrid'],
+            ['', ''],
+        ];
+    }
+
+    /**
+     * @dataProvider modeProvider
+     *
+     * @param string $mode
+     * @param string $check
+     */
+    public function testGetMode($mode, $check)
+    {
+        $request = new \Symfony\Component\HttpFoundation\Request(['mode' => $mode]);
+        $returnValue = $this->invokeMethod($this->_object, 'getMode', [$request, $mode]);
+
+        $this->assertSame($check, $returnValue);
+    }
+
+    public function nullModeProvider()
+    {
+        return [
+            ['dummy', 'dummy'],
+            ['computer', 'computer'],
+            ['human', 'human'],
+            ['hybrid', 'hybrid'],
+            ['', 'computer'],
+        ];
+    }
+
+    /**
+     * @dataProvider nullModeProvider
+     *
+     * @param string $mode
+     * @param string $check
+     */
+    public function testGetModeNull($mode, $check)
+    {
+        $request = new \Symfony\Component\HttpFoundation\Request(['mode' => $mode]);
+
+        $returnValue = $this->invokeMethod($this->_object, 'getMode', [$request, null]);
+
+        $this->assertSame($check, $returnValue);
     }
 }

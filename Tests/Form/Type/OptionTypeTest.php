@@ -7,14 +7,7 @@ use Hackzilla\PasswordGenerator\Model\Option\BooleanOption;
 use Hackzilla\PasswordGenerator\Model\Option\IntegerOption;
 use Hackzilla\PasswordGenerator\Model\Option\StringOption;
 use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilder;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\Form\FormRegistry;
-use Symfony\Component\Form\PreloadedExtension;
-use Symfony\Component\Form\ResolvedFormTypeFactory;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 class OptionTypeTest extends TypeTestCase
@@ -89,7 +82,7 @@ class OptionTypeTest extends TypeTestCase
      *
      * @return mixed Method return.
      */
-    private function invokeMethod(&$object, $methodName, array $parameters = array())
+    private function invokeMethod(&$object, $methodName, array $parameters = [])
     {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
