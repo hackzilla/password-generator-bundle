@@ -19,7 +19,7 @@
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",
         "symfony/phpunit-bridge": "^2.7 || ^3.0",
-        "sllh/php-cs-fixer-styleci-bridge": "^1.5"
+        "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "autoload": {
         "psr-4": {
