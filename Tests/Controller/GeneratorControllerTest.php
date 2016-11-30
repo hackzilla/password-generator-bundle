@@ -29,7 +29,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetPasswordGenerator($mode, $check)
     {
-        $container = $this->getMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 
         $container
             ->method('get')
@@ -67,7 +67,7 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPasswordGeneratorException()
     {
-        $container = $this->getMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
 
         $container
             ->method('get')
@@ -134,5 +134,20 @@ class GeneratorControllerTest extends \PHPUnit_Framework_TestCase
         $returnValue = $this->invokeMethod($this->_object, 'getMode', [$request, null]);
 
         $this->assertSame($check, $returnValue);
+    }
+
+    /**
+     * Copied from PHPUnit_Framework_TestCase for BC with phpunit < 5.4.0
+     *
+     * {@inheritdoc}
+     */
+    protected function createMock($originalClassName)
+    {
+        return $this->getMockBuilder($originalClassName)
+            ->disableOriginalConstructor()
+            ->disableOriginalClone()
+            ->disableArgumentCloning()
+            ->disallowMockingUnknownTypes()
+            ->getMock();
     }
 }
