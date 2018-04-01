@@ -2,6 +2,8 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Controller;
 
+use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
+
 class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 {
     private $_object;
@@ -81,7 +83,7 @@ class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->_object->setContainer($container);
 
-        $this->setExpectedException('Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException');
+        $this->expectedException(UnknownGeneratorException::class);
         $this->invokeMethod($this->_object, 'getPasswordGenerator', ['non-existent']);
     }
 

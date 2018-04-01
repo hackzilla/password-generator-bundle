@@ -60,7 +60,7 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
 
     public function testOptionFailure()
     {
-        $this->setExpectedException('InvalidArgumentException');
+        $this->expectedException(\InvalidArgumentException::class);
 
         $this->_object->{'non_existent'};
     }
