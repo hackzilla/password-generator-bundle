@@ -3,6 +3,7 @@
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 {
@@ -31,7 +32,7 @@ class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
      */
     public function testGetPasswordGenerator($mode, $check)
     {
-        $container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock(ContainerInterface::class);
 
         $container
             ->method('get')
@@ -69,7 +70,7 @@ class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 
     public function testGetPasswordGeneratorException()
     {
-        $container = $this->createMock('\Symfony\Component\DependencyInjection\ContainerInterface');
+        $container = $this->createMock(ContainerInterface::class);
 
         $container
             ->method('get')
@@ -136,25 +137,5 @@ class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
         $returnValue = $this->invokeMethod($this->_object, 'getMode', [$request, null]);
 
         $this->assertSame($check, $returnValue);
-    }
-
-    /**
-     * Copied from PHPUnit_Framework_TestCase for BC with phpunit < 5.4.0
-     *
-     * {@inheritdoc}
-     */
-    protected function createMock($originalClassName)
-    {
-        $builder = $this->getMockBuilder($originalClassName)
-            ->disableOriginalConstructor()
-            ->disableOriginalClone()
-            ->disableArgumentCloning();
-
-        // For BC purpose. PHPUnit_Framework_MockObject_MockBuilder::disallowMockingUnknownTypes available since Release 3.2.0
-        if (true === method_exists($builder, 'disallowMockingUnknownTypes')) {
-            $builder->disallowMockingUnknownTypes();
-        }
-
-        return $builder->getMock();
     }
 }
