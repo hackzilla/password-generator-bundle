@@ -83,7 +83,7 @@ class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 
         $this->_object->setContainer($container);
 
-        $this->expectedException(UnknownGeneratorException::class);
+        $this->expectException(UnknownGeneratorException::class);
         $this->invokeMethod($this->_object, 'getPasswordGenerator', ['non-existent']);
     }
 
