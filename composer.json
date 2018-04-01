@@ -11,14 +11,14 @@
         }
     ],
     "require": {
-        "php": "^5.5 || ^7.0",
+        "php": "^5.5|^7.0",
         "hackzilla/password-generator": "^1.3",
-        "symfony/framework-bundle": "^2.7 || ^3.0",
-        "symfony/form": "^2.7 || ^3.0"
+        "symfony/framework-bundle": "^2.7|^3.0|^4.0",
+        "symfony/form": "^2.7|^3.0|^4.0"
     },
     "require-dev": {
         "satooshi/php-coveralls": "^1.0",
-        "symfony/phpunit-bridge": "^2.7 || ^3.0",
+        "symfony/phpunit-bridge": "^2.7|^3.0|^4.0",
         "sllh/php-cs-fixer-styleci-bridge": "^2.0"
     },
     "autoload": {
