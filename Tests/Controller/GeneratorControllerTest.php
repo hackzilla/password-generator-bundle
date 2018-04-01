@@ -2,7 +2,7 @@
 
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Controller;
 
-class GeneratorControllerTest extends \PHPUnit\Framework_TestCase
+class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
 {
     private $_object;
 
