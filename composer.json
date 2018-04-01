@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": "^7.0",
+        "php": "^7.1",
         "hackzilla/password-generator": "^1.3",
         "symfony/framework-bundle": "^2.7|^3.0|^4.0",
         "symfony/form": "^2.7|^3.0|^4.0"

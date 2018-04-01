@@ -22,11 +22,11 @@ Requirements
 Version Matrix
 --------------
 
-| Password Generator Bundle | Symfony          | PHP   |
-| ------------------------- | ---------- ----- | ----- |
-| 3.x (master)              | ^2.7\|^3.0\|^4.0 | >=7.0 |
-| 2.x                       | ^2.7\|^3.0       | >=5.5 |
-| 1.x                       | ^2.3             | >=5.3 |
+| Password Generator Bundle | Symfony    | PHP   |
+| ------------------------- | ---------- | ----- |
+| 3.x (master)              | ^3.0\|^4.0 | >=7.1 |
+| 2.x                       | ^2.7\|^3.0 | >=5.5 |
+| 1.x                       | ^2.3       | >=5.3 |
 
 
 Installation
