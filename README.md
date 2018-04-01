@@ -16,16 +16,17 @@ Requirements
 
 * PHP >= 5.5
 * [hackzilla/password-generator](https://github.com/hackzilla/password-generator) ~1.0
-* Symfony ~2.7|~3.0
+* Symfony ~2.7|~3.0|^4.0
 
 
 Version Matrix
 --------------
 
-| Password Generator Bundle | Symfony    | PHP   |
-| ------------------------- | ---------- | ----- |
-| 2.x (master)              | ^2.7\|^3.0 | >=5.5 |
-| 1.x                       | ^2.3       | >=5.3 |
+| Password Generator Bundle | Symfony          | PHP   |
+| ------------------------- | ---------- ----- | ----- |
+| 3.x (master)              | ^2.7\|^3.0\|^4.0 | >=7.0 |
+| 2.x                       | ^2.7\|^3.0       | >=5.5 |
+| 1.x                       | ^2.3             | >=5.3 |
 
 
 Installation
@@ -36,7 +37,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "^2.0.0"
+        "hackzilla/password-generator-bundle": "^3.0"
     }
 }
 ```
@@ -84,6 +85,12 @@ framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
 ```
+
+Migrating from v2
+-----------------
+
+Version 3 release is just a version bump.
+
 
 Migrating from v1
 -----------------
