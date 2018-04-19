@@ -1,6 +1,6 @@
-{% extends 'HackzillaPasswordGeneratorBundle::layout.html.twig' %}
+{% extends '@HackzillaPasswordGenerator\\layout.html.twig' %}
 
 {% block layout %}
-    {% include 'HackzillaPasswordGeneratorBundle::menu.html.twig' with {'mode': mode} %}
+    {% include '@HackzillaPasswordGenerator\\menu.html.twig' with {'mode': mode} %}
     {% block form %}{% endblock form %}
 {% endblock layout %}

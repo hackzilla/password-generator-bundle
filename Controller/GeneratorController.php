@@ -45,7 +45,7 @@ class GeneratorController extends Controller
         }
 
         return $this->render(
-            'HackzillaPasswordGeneratorBundle:Generator:form.html.twig', [
+            '@HackzillaPasswordGenerator/Generator/form.html.twig', [
                 'form'      => $form->createView(),
                 'mode'      => $mode,
                 'passwords' => $passwords,
