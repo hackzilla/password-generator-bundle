@@ -18,17 +18,21 @@ parameters:
 services:
     hackzilla.password_generator.requirement:
         class: "%hackzilla.password_generator.requirement.class%"
+        public: true
 
     hackzilla.password_generator.dummy:
         class: "%hackzilla.password_generator.dummy.class%"
+        public: true
 
     hackzilla.password_generator.computer:
         class: "%hackzilla.password_generator.computer.class%"
+        public: true
         calls:
           - [setLength, ["%hackzilla.password_generator.computer.length%"]]
 
     hackzilla.password_generator.human:
         class: "%hackzilla.password_generator.human.class%"
+        public: true
         calls:
           - [setWordCount, ["%hackzilla.password_generator.human.word_count%"]]
           - [setMinWordLength, ["%hackzilla.password_generator.human.min_word_length%"]]
@@ -38,6 +42,7 @@ services:
 
     hackzilla.password_generator.hybrid:
         class: "%hackzilla.password_generator.hybrid.class%"
+        public: true
         calls:
           - [setSegmentCount, ["%hackzilla.password_generator.hybrid.segment_count%"]]
           - [setSegmentLength, ["%hackzilla.password_generator.hybrid.segment_length%"]]
