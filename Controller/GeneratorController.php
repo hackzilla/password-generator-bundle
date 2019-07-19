@@ -36,7 +36,7 @@ class GeneratorController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             try {
                 $passwords = $passwordGenerator->generatePasswords($options->getQuantity());
             } catch (CharactersNotFoundException $e) {
