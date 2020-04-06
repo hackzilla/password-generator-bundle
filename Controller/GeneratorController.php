@@ -12,7 +12,6 @@ use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator;
-use Psr\Container\ContainerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Request;
