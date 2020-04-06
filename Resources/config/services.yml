@@ -42,3 +42,15 @@ services:
     Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType:
         tags:
             - { name: form.type }
+
+    Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController:
+      public: true
+      tags: ['controller.service_arguments']
+      arguments:
+        - '@Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator'
+        - '@Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator'
+        - '@Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator'
+        - '@Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator'
+        - '@Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator'
+      calls:
+        - [setContainer, ['@service_container']]
