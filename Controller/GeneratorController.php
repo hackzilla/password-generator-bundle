@@ -6,16 +6,50 @@ use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
 use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
 use Hackzilla\PasswordGenerator\Exception\CharactersNotFoundException;
+use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;
+use Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator;
+use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
+use Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator;
+use Psr\Container\ContainerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Password Generator controller.
  */
-class GeneratorController extends Controller
+class GeneratorController extends AbstractController
 {
+    /** @var HumanPasswordGenerator */
+    private $humanPasswordGenerator;
+
+    /** @var HybridPasswordGenerator */
+    private $hybridPasswordGenerator;
+
+    /** @var ComputerPasswordGenerator */
+    private $computerPasswordGenerator;
+
+    /** @var RequirementPasswordGenerator */
+    private $requirementPasswordGenerator;
+
+    /** @var DummyPasswordGenerator */
+    private $dummyPasswordGenerator;
+
+
+    /**
+     * GeneratorController constructor.
+     */
+    public function __construct(HumanPasswordGenerator $humanPasswordGenerator, HybridPasswordGenerator $hybridPasswordGenerator, ComputerPasswordGenerator $computerPasswordGenerator, RequirementPasswordGenerator $requirementPasswordGenerator, DummyPasswordGenerator $dummyPasswordGenerator)
+    {
+        $this->humanPasswordGenerator = $humanPasswordGenerator;
+        $this->hybridPasswordGenerator = $hybridPasswordGenerator;
+        $this->computerPasswordGenerator = $computerPasswordGenerator;
+        $this->requirementPasswordGenerator = $requirementPasswordGenerator;
+        $this->dummyPasswordGenerator = $dummyPasswordGenerator;
+    }
+
     /**
      * Password generator form.
      *
@@ -24,7 +58,7 @@ class GeneratorController extends Controller
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function formAction(Request $request, $mode = null)
+    public function form(Request $request, $mode = null)
     {
         $mode = $this->getMode($request, $mode);
         $passwordGenerator = $this->getPasswordGenerator($mode);
@@ -67,17 +101,19 @@ class GeneratorController extends Controller
     {
         switch ($mode) {
             case 'dummy':
-            case 'computer':
-            case 'human':
-            case 'hybrid':
-                $serviceName = 'hackzilla.password_generator.'.$mode;
-                break;
+                return $this->dummyPasswordGenerator;
 
-            default:
-                throw new UnknownGeneratorException();
+            case 'computer':
+                return $this->computerPasswordGenerator;
+
+            case 'human':
+                return $this->humanPasswordGenerator;
+
+            case 'hybrid':
+                return $this->hybridPasswordGenerator;
         }
 
-        return $this->container->get($serviceName);
+        throw new UnknownGeneratorException();
     }
 
     /**
