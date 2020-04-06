@@ -12,7 +12,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 
 class OptionTypeTest extends TypeTestCase
 {
-    public function testAddBooleanType()
+    public function testAddBooleanType(): void
     {
         $option = new BooleanOption();
         $option->setValue(true);
@@ -28,9 +28,12 @@ class OptionTypeTest extends TypeTestCase
                 $option,
             ]
         );
+
+        // Did we we make it here without crashing.
+        $this->assertTrue(true);
     }
 
-    public function testAddStringType()
+    public function testAddStringType(): void
     {
         $option = new StringOption();
         $option->setValue('test');
@@ -46,9 +49,12 @@ class OptionTypeTest extends TypeTestCase
                 $option,
             ]
         );
+
+        // Did we we make it here without crashing.
+        $this->assertTrue(true);
     }
 
-    public function testAddIntegerType()
+    public function testAddIntegerType(): void
     {
         $option = new IntegerOption();
         $option->setValue(123);
@@ -64,6 +70,9 @@ class OptionTypeTest extends TypeTestCase
                 $option,
             ]
         );
+
+        // Did we we make it here without crashing.
+        $this->assertTrue(true);
     }
 
     private function formBuilder()

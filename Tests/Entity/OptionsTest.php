@@ -6,7 +6,7 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
 {
     private $_object;
 
-    public function setup()
+    public function setup(): void
     {
         $passwordGenerator = new \Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator();
         $this->_object = new \Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options($passwordGenerator);
@@ -29,7 +29,7 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
      * @param mixed $quantity
      * @param int   $check
      */
-    public function testQuantity($quantity, $check)
+    public function testQuantity($quantity, $check): void
     {
         $this->_object->setQuantity($quantity);
 
@@ -51,14 +51,14 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
      * @param string $key
      * @param mixed  $value
      */
-    public function testOption($key, $value)
+    public function testOption($key, $value): void
     {
         $this->_object->{$key} = $value;
 
         $this->assertSame($value, $this->_object->{$key});
     }
 
-    public function testOptionFailure()
+    public function testOptionFailure(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
