@@ -57,7 +57,7 @@ class GeneratorController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function form(Request $request, $mode = null)
+    public function formAction(Request $request, $mode = null)
     {
         $mode = $this->getMode($request, $mode);
         $passwordGenerator = $this->getPasswordGenerator($mode);

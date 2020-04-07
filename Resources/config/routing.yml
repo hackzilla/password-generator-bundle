@@ -1,20 +1,20 @@
 hackzilla_password_generator_form:
     path:  /
-    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::form
+    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::formAction
 
 hackzilla_password_generator_human_form:
     path:  /human
-    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::form
+    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::formAction
     defaults: { mode: human }
 
 hackzilla_password_generator_hybrid_form:
     path:  /hybrid
-    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::form
+    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::formAction
     defaults: { mode: hybrid }
 
 hackzilla_password_generator_computer_form:
     path:  /computer
-    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::form
+    controller: Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController::formAction
     defaults: { mode: computer }
 
 hackzilla_password_generator_show:
