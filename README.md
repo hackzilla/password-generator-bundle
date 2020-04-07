@@ -22,11 +22,12 @@ Requirements
 Version Matrix
 --------------
 
-| Password Generator Bundle | Symfony    | PHP   |
-| ------------------------- | ---------- | ----- |
-| 3.x (master)              | ^3.0\|^4.0 | >=7.1 |
-| 2.x                       | ^2.7\|^3.0 | >=5.5 |
-| 1.x                       | ^2.3       | >=5.3 |
+| Password Generator Bundle | Symfony         | PHP   |
+| ------------------------- | --------------- | ----- |
+| 4.x                       | ^3.0\|^4.0|^5.0 | >=7.1 |
+| 3.x                       | ^3.0\|^4.0      | >=7.1 |
+| 2.x                       | ^2.7\|^3.0      | >=5.5 |
+| 1.x                       | ^2.3            | >=5.3 |
 
 
 Installation
@@ -37,7 +38,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "^3.0"
+        "hackzilla/password-generator-bundle": "^4.0"
     }
 }
 ```
@@ -52,7 +53,7 @@ mv composer.phar /usr/local/bin/composer
 Now tell composer to download the library by running the command:
 
 ``` bash
-$ composer update hackzilla/password-generator
+$ composer require hackzilla/password-generator-bundle
 ```
 
 Composer will install the bundle into your project's `vendor/hackzilla` directory.
@@ -63,7 +64,7 @@ Enable the bundle in the kernel:
 
 ``` php
 <?php
-// app/AppKernel.php
+// app/AppKernel.php or config/bundles.php
 
 public function registerBundles()
 {
@@ -85,6 +86,12 @@ framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
 ```
+
+Migrating from v3
+-----------------
+
+Version 4 release is just a version bump.
+
 
 Migrating from v2
 -----------------
