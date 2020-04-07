@@ -12,18 +12,22 @@ parameters:
     hackzilla.password_generator.hybrid.segment_separator: '-'
 
 services:
-    Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator:
+    hackzilla.password_generator.requirement:
+        class: Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator
         public: true
 
-    Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator:
+    hackzilla.password_generator.dummy:
+        class: Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator
         public: true
 
-    Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator:
+    hackzilla.password_generator.computer:
+        class: Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator
         public: true
         calls:
           - [setLength, ["%hackzilla.password_generator.computer.length%"]]
 
-    Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator:
+    hackzilla.password_generator.human:
+        class: Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator
         public: true
         calls:
           - [setWordCount, ["%hackzilla.password_generator.human.word_count%"]]
@@ -32,7 +36,8 @@ services:
           - [setWordSeparator, ["%hackzilla.password_generator.human.word_separator%"]]
           - [setWordList, ["%hackzilla.password_generator.human.word_list%"]]
 
-    Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator:
+    hackzilla.password_generator.hybrid:
+        class: Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator
         public: true
         calls:
           - [setSegmentCount, ["%hackzilla.password_generator.hybrid.segment_count%"]]
@@ -47,10 +52,10 @@ services:
       public: true
       tags: ['controller.service_arguments']
       arguments:
-        - '@Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator'
-        - '@Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator'
-        - '@Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator'
-        - '@Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator'
-        - '@Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator'
+        - '@hackzilla.password_generator.human'
+        - '@hackzilla.password_generator.hybrid'
+        - '@hackzilla.password_generator.computer'
+        - '@hackzilla.password_generator.requirement'
+        - '@hackzilla.password_generator.dummy'
       calls:
         - [setContainer, ['@service_container']]
