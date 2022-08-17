@@ -14,21 +14,23 @@ Simple multilingual bundle to add to any project. Available languages (Pull Requ
 Requirements
 ------------
 
-* PHP >= 7.1
+* PHP >= 7.1 (or PHP 8.1 for Symfony v6)
 * [hackzilla/password-generator](https://github.com/hackzilla/password-generator) ^1.3.0
-* Symfony ~3.0|^4.0|^5.0
+* Symfony ^3.0|^4.0|^5.0|^6.0
 
 
 Version Matrix
 --------------
 
-| Password Generator Bundle | Symfony          | PHP   |
-| ------------------------- | ---------------- | ----- |
-| 4.x                       | ^3.0\|^4.0\|^5.0 | >=7.1 |
-| 3.x                       | ^3.0\|^4.0       | >=7.1 |
-| 2.x                       | ^2.7\|^3.0       | >=5.5 |
-| 1.x                       | ^2.3             | >=5.3 |
+| Password Generator Bundle | Symfony                                  | PHP    |
+|---------------------------|------------------------------------------|--------|
+| 4.x                       | ^3.0 &#124; ^4.0 &#124; ^5.0 &#124; ^6.0 | >=7.1* |
+| 3.x                       | ^3.0 &#124; ^4.0                         | >=7.1  |
+| 2.x                       | ^2.7 &#124; ^3.0                         | >=5.5  |
+| 1.x                       | ^2.3                                     | >=5.3  |
 
+* Symfony 5.0 requires PHP v7.2+
+* Symfony 6.0 requires PHP v8.1+
 
 Installation
 ------------
