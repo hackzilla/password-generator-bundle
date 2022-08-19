@@ -24,6 +24,7 @@ Version Matrix
 
 | Password Generator Bundle | Symfony                                  | PHP    |
 |---------------------------|------------------------------------------|--------|
+| 5.x                       | ^4.0 &#124; ^5.0 &#124; ^6.0             | >=7.1* |
 | 4.x                       | ^3.0 &#124; ^4.0 &#124; ^5.0 &#124; ^6.0 | >=7.1* |
 | 3.x                       | ^3.0 &#124; ^4.0                         | >=7.1  |
 | 2.x                       | ^2.7 &#124; ^3.0                         | >=5.5  |
@@ -40,7 +41,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "^4.0"
+        "hackzilla/password-generator-bundle": "^5.0"
     }
 }
 ```
@@ -89,11 +90,15 @@ framework:
     translator:      { fallbacks: ["%locale%"] }
 ```
 
+Migrating from v4
+-----------------
+
+Version 5 release is just drops support for Symfony v3.
+
 Migrating from v3
 -----------------
 
 Version 4 release is just a version bump.
-
 
 Migrating from v2
 -----------------
