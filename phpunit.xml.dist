@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" backupGlobals="false" backupStaticAttributes="false" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolation="false" stopOnFailure="false" bootstrap="Tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
-  <coverage>
+  <php>
+      <ini name="display_errors" value="1" />
+      <ini name="error_reporting" value="-1" />
+
+      <server name="APP_ENV" value="test" force="true" />
+      <server name="KERNEL_CLASS" value="Hackzilla\Bundle\PasswordGeneratorBundle\Tests\TestKernel" force="true" />
+      <server name="SYMFONY_DEPRECATIONS_HELPER" value="999999" force="true" />
+      <server name="SHELL_VERBOSITY" value="-1" />
+      <server name="SYMFONY_PHPUNIT_REMOVE" value="" />
+      <server name="SYMFONY_PHPUNIT_VERSION" value="9.5" />
+  </php>
+
+  <coverage processUncoveredFiles="true">
     <include>
-      <directory>./</directory>
+        <directory suffix=".php">./</directory>
     </include>
 
     <exclude>
@@ -15,6 +27,10 @@
       <clover outputFile="build/logs/clover.xml"/>
     </report>
   </coverage>
+ 
+  <listeners>
+      <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+  </listeners>
 
   <testsuites>
     <testsuite name="Password Generator Bundle test suite">

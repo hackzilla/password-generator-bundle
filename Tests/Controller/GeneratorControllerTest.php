@@ -8,20 +8,28 @@ use Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\HybridPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Form\FormFactory;
+use Twig\Environment;
 
-class GeneratorControllerTest extends \PHPUnit\Framework\TestCase
+class GeneratorControllerTest extends KernelTestCase
 {
     private $_object;
 
     public function setup(): void
     {
+        self::bootKernel();
+        $container = static::getContainer();
+
         $this->_object = new \Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController(
             new HumanPasswordGenerator(),
             new HybridPasswordGenerator(),
             new ComputerPasswordGenerator(),
             new RequirementPasswordGenerator(),
-            new DummyPasswordGenerator()
+            new DummyPasswordGenerator(),
+            $container->get('form.factory'),
+            $container->get('twig'),
         );
     }
 
