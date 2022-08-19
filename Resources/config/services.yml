@@ -57,5 +57,7 @@ services:
         - '@hackzilla.password_generator.computer'
         - '@hackzilla.password_generator.requirement'
         - '@hackzilla.password_generator.dummy'
+        - '@form.factory'
+        - '@twig'
       calls:
         - [setContainer, ['@service_container']]

@@ -14,7 +14,10 @@ use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormFactory;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Twig\Environment;
 
 /**
  * Password Generator controller.
@@ -36,17 +39,32 @@ class GeneratorController extends AbstractController
     /** @var DummyPasswordGenerator */
     private $dummyPasswordGenerator;
 
+    /** @var FormFactory */
+    private $formFactory;
+
+    /** @var Environment */
+    private $twigEnvironment;
 
     /**
      * GeneratorController constructor.
      */
-    public function __construct(HumanPasswordGenerator $humanPasswordGenerator, HybridPasswordGenerator $hybridPasswordGenerator, ComputerPasswordGenerator $computerPasswordGenerator, RequirementPasswordGenerator $requirementPasswordGenerator, DummyPasswordGenerator $dummyPasswordGenerator)
+    public function __construct(
+        HumanPasswordGenerator $humanPasswordGenerator,
+        HybridPasswordGenerator $hybridPasswordGenerator,
+        ComputerPasswordGenerator $computerPasswordGenerator,
+        RequirementPasswordGenerator $requirementPasswordGenerator,
+        DummyPasswordGenerator $dummyPasswordGenerator,
+        FormFactory $formFactory,
+        Environment $twigEnvironment,
+    )
     {
         $this->humanPasswordGenerator = $humanPasswordGenerator;
         $this->hybridPasswordGenerator = $hybridPasswordGenerator;
         $this->computerPasswordGenerator = $computerPasswordGenerator;
         $this->requirementPasswordGenerator = $requirementPasswordGenerator;
         $this->dummyPasswordGenerator = $dummyPasswordGenerator;
+        $this->formFactory = $formFactory;
+        $this->twigEnvironment = $twigEnvironment;
     }
 
     /**
@@ -77,7 +95,7 @@ class GeneratorController extends AbstractController
             }
         }
 
-        return $this->render(
+        $content = $this->twigEnvironment->render(
             '@HackzillaPasswordGenerator/Generator/form.html.twig', [
                 'form'      => $form->createView(),
                 'mode'      => $mode,
@@ -85,6 +103,8 @@ class GeneratorController extends AbstractController
                 'error'     => $error,
             ]
         );
+
+        return new Response($content);
     }
 
     /**
@@ -152,7 +172,7 @@ class GeneratorController extends AbstractController
      */
     private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
     {
-        return $this->createForm(
+        return $this->formFactory->create(
             method_exists(AbstractType::class, 'getBlockPrefix') ? OptionType::class : new OptionType(), $options, [
             'action'    => $this->generateUrl(
                 'hackzilla_password_generator_show',
