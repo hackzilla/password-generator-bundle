@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /*
- * This file is part of HackzillaTicketBundle package.
+ * This file is part of HackzillaPasswordGeneratorBundle package.
  *
  * (c) Daniel Platt <github@ofdan.co.uk>
  *
@@ -18,7 +18,61 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\Component\Routing\RouteCollectionBuilder;
+
+if (\Symfony\Component\HttpKernel\Kernel::MAJOR_VERSION >= 5) {
+    trait ConfigureRoutes
+    {
+        protected function configureRoutes(RoutingConfigurator $routes): void
+        {
+            $routes->import(__DIR__.'/routes.yaml', 'yaml');
+        }
+    }
+
+    trait KernelDirectories
+    {
+        public function getCacheDir(): string
+        {
+            return $this->getBaseDir().'cache';
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function getLogDir(): string
+        {
+            return $this->getBaseDir().'log';
+        }
+    }
+} else {
+    trait ConfigureRoutes
+    {
+        /**
+         * {@inheritdoc}
+         */
+        protected function configureRoutes(RouteCollectionBuilder $routes)
+        {
+            $routes->import(__DIR__.'/routes.yaml', '/', 'yaml');
+        }
+    }
+
+    trait KernelDirectories
+    {
+        public function getCacheDir()
+        {
+            return $this->getBaseDir().'cache';
+        }
+
+        /**
+         * {@inheritdoc}
+         */
+        public function getLogDir()
+        {
+            return $this->getBaseDir().'log';
+        }
+    }
+}
 
 /**
  * @author Javier Spagnoletti <phansys@gmail.com>
@@ -26,7 +80,11 @@ use Symfony\Component\Serializer\Serializer;
  */
 final class TestKernel extends Kernel
 {
-    use MicroKernelTrait;
+    use ConfigureRoutes, KernelDirectories, MicroKernelTrait {
+        ConfigureRoutes::configureRoutes insteadof MicroKernelTrait;
+        KernelDirectories::getCacheDir insteadof MicroKernelTrait;
+        KernelDirectories::getLogDir insteadof MicroKernelTrait;
+    }
 
     public function __construct()
     {
@@ -57,7 +115,7 @@ final class TestKernel extends Kernel
     {
         // FrameworkBundle config
         $frameworkConfig = [
-            'secret' => 'asnad',
+            'secret' => 'MySecretKey',
             'default_locale' => 'en',
             'form' => null,
             'test' => true,
@@ -80,5 +138,10 @@ final class TestKernel extends Kernel
             $twigConfig['default_path'] = __DIR__.'/Resources/views';
         }
         $c->loadFromExtension('twig', $twigConfig);
+    }
+
+    private function getBaseDir()
+    {
+        return sys_get_temp_dir().'/hackzilla-password-generator-bundle/var/';
     }
 }

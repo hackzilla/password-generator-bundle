@@ -3,6 +3,7 @@
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;
+use Hackzilla\Bundle\PasswordGeneratorBundle\Tests\TestKernel;
 use Hackzilla\PasswordGenerator\Generator\ComputerPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\DummyPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
@@ -20,7 +21,12 @@ class GeneratorControllerTest extends KernelTestCase
     public function setup(): void
     {
         self::bootKernel();
-        $container = static::getContainer();
+
+        if (version_compare(TestKernel::VERSION, '5.0', '>=')) {
+            $container = static::getContainer();
+        } else {
+            $container = static::$kernel->getContainer();
+        }
 
         $this->_object = new \Hackzilla\Bundle\PasswordGeneratorBundle\Controller\GeneratorController(
             new HumanPasswordGenerator(),
