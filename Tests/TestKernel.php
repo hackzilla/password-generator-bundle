@@ -102,7 +102,7 @@ final class TestKernel extends Kernel
         ];
     }
 
-    public function build(ContainerBuilder $container)
+    public function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new PublicService(), PassConfig::TYPE_OPTIMIZE);
         parent::build($container);
@@ -131,7 +131,6 @@ final class TestKernel extends Kernel
         $twigConfig = [
             'strict_variables' => '%kernel.debug%',
             'exception_controller' => null,
-            'autoescape' => 'name',
         ];
         // "default_path" configuration is available since version 3.4.
         if (version_compare(self::VERSION, '3.4', '>=')) {
