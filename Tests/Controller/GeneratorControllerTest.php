@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Controller;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Exception\UnknownGeneratorException;

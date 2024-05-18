@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Tests\Form\Type;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type\OptionType;
