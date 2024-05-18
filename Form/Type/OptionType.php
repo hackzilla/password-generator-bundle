@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Hackzilla\Bundle\PasswordGeneratorBundle\Form\Type;
 
 use Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options;
+use Hackzilla\PasswordGenerator\Generator\HumanPasswordGenerator;
 use Hackzilla\PasswordGenerator\Generator\PasswordGeneratorInterface;
 use Hackzilla\PasswordGenerator\Model\Option\Option;
 use Hackzilla\PasswordGenerator\Model\Option\OptionInterface;
@@ -32,11 +33,20 @@ class OptionType extends AbstractType
                 ],
             );
 
-        if (!is_a($options['generator'], PasswordGeneratorInterface::class)) {
+        $generator = $options['generator'];
+
+        if (!is_a($generator, PasswordGeneratorInterface::class)) {
             return;
         }
 
-        foreach ($options['generator']->getOptions() as $key => $option) {
+        foreach ($generator->getOptions() as $key => $option) {
+            if (
+                $generator instanceof HumanPasswordGenerator
+                && HumanPasswordGenerator::OPTION_LENGTH === $key
+            ) {
+                continue;
+            }
+
             switch ($option->getType()) {
                 case Option::TYPE_STRING:
                     $this->addStringType($builder, $key, $option);
@@ -65,11 +75,11 @@ class OptionType extends AbstractType
                 strtolower($key),
                 TextType::class,
                 [
-                    'data'     => $option->getValue(),
-                    'label'    => 'OPTION_'.$key,
+                    'data' => $option->getValue(),
+                    'label' => 'OPTION_'.$key,
                     'required' => false,
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -85,12 +95,12 @@ class OptionType extends AbstractType
                 strtolower($key),
                 CheckboxType::class,
                 [
-                    'value'    => 1,
-                    'data'     => $option->getValue(),
-                    'label'    => 'OPTION_'.$key,
+                    'value' => 1,
+                    'data' => $option->getValue(),
+                    'label' => 'OPTION_'.$key,
                     'required' => false,
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -106,11 +116,11 @@ class OptionType extends AbstractType
                 strtolower($key),
                 IntegerType::class,
                 [
-                    'data'     => $option->getValue(),
-                    'label'    => 'OPTION_'.$key,
+                    'data' => $option->getValue(),
+                    'label' => 'OPTION_'.$key,
                     'required' => false,
-                ]
-            )
+                ],
+            ),
         );
     }
 
@@ -121,10 +131,10 @@ class OptionType extends AbstractType
     {
         $resolver->setDefaults(
             [
-                'data_class'      => Options::class,
+                'data_class' => Options::class,
                 'csrf_protection' => false,
-                'generator'       => null,
-            ]
+                'generator' => null,
+            ],
         );
     }
 
