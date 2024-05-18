@@ -16,22 +16,22 @@ class Options
         $this->passwordGenerator = $passwordGenerator;
     }
 
-    public function __get($name)
+    public function __get($name): mixed
     {
         return $this->passwordGenerator->getOptionValue(strtoupper($name));
     }
 
-    public function __set($name, $value)
+    public function __set($name, $value): void
     {
         $this->passwordGenerator->setOptionValue(strtoupper($name), $value);
     }
 
-    public function getQuantity()
+    public function getQuantity(): int
     {
         return (int) $this->quantity;
     }
 
-    public function setQuantity($quantity)
+    public function setQuantity($quantity): void
     {
         $this->quantity = $quantity;
     }

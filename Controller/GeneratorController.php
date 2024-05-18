@@ -17,6 +17,7 @@ use Hackzilla\PasswordGenerator\Generator\RequirementPasswordGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormFactory;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -26,26 +27,19 @@ use Twig\Environment;
  */
 class GeneratorController extends AbstractController
 {
-    /** @var HumanPasswordGenerator */
-    private $humanPasswordGenerator;
+    private HumanPasswordGenerator $humanPasswordGenerator;
 
-    /** @var HybridPasswordGenerator */
-    private $hybridPasswordGenerator;
+    private HybridPasswordGenerator $hybridPasswordGenerator;
 
-    /** @var ComputerPasswordGenerator */
-    private $computerPasswordGenerator;
+    private ComputerPasswordGenerator $computerPasswordGenerator;
 
-    /** @var RequirementPasswordGenerator */
-    private $requirementPasswordGenerator;
+    private RequirementPasswordGenerator $requirementPasswordGenerator;
 
-    /** @var DummyPasswordGenerator */
-    private $dummyPasswordGenerator;
+    private DummyPasswordGenerator $dummyPasswordGenerator;
 
-    /** @var FormFactory */
-    private $formFactory;
+    private FormFactory $formFactory;
 
-    /** @var Environment */
-    private $twigEnvironment;
+    private Environment $twigEnvironment;
 
     /**
      * GeneratorController constructor.
@@ -77,7 +71,7 @@ class GeneratorController extends AbstractController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function formAction(Request $request, $mode = null)
+    public function formAction(Request $request, ?string $mode = null): Response
     {
         $mode = $this->getMode($request, $mode);
         $passwordGenerator = $this->getPasswordGenerator($mode);
@@ -118,7 +112,7 @@ class GeneratorController extends AbstractController
      *
      * @throws UnknownGeneratorException
      */
-    private function getPasswordGenerator($mode)
+    private function getPasswordGenerator($mode): PasswordGeneratorInterface
     {
         switch ($mode) {
             case 'dummy':
@@ -145,7 +139,7 @@ class GeneratorController extends AbstractController
      *
      * @return string
      */
-    private function getMode(Request $request, $mode = null)
+    private function getMode(Request $request, $mode = null): string
     {
         if (is_null($mode)) {
             switch ($request->query->get('mode')) {
@@ -172,7 +166,7 @@ class GeneratorController extends AbstractController
      *
      * @return \Symfony\Component\Form\Form
      */
-    private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
+    private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = ''): FormInterface
     {
         return $this->formFactory->create(OptionType::class, $options, [
             'action'    => $this->generateUrl(

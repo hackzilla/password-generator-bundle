@@ -21,7 +21,7 @@ class OptionType extends AbstractType
      * @param FormBuilderInterface $builder
      * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -58,7 +58,7 @@ class OptionType extends AbstractType
      * @param                      $key
      * @param OptionInterface      $option
      */
-    private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    private function addStringType(FormBuilderInterface $builder, $key, OptionInterface $option): void
     {
         $builder->add(
             $builder->create(
@@ -78,7 +78,7 @@ class OptionType extends AbstractType
      * @param                      $key
      * @param OptionInterface      $option
      */
-    private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    private function addBooleanType(FormBuilderInterface $builder, $key, OptionInterface $option): void
     {
         $builder->add(
             $builder->create(
@@ -99,7 +99,7 @@ class OptionType extends AbstractType
      * @param                      $key
      * @param OptionInterface      $option
      */
-    private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option)
+    private function addIntegerType(FormBuilderInterface $builder, $key, OptionInterface $option): void
     {
         $builder->add(
             $builder->create(
@@ -117,7 +117,7 @@ class OptionType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(
             [
