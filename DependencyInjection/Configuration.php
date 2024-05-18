@@ -21,11 +21,6 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder('hackzilla_password_generator');
 
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            // BC layer for symfony/config 4.1 and older
-            $treeBuilder->root('hackzilla_password_generator');
-        }
-
         return $treeBuilder;
     }
 }

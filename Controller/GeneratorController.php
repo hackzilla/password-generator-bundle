@@ -174,8 +174,7 @@ class GeneratorController extends AbstractController
      */
     private function buildForm(PasswordGeneratorInterface $passwordGenerator, Options $options, $mode = '')
     {
-        return $this->formFactory->create(
-            method_exists(AbstractType::class, 'getBlockPrefix') ? OptionType::class : new OptionType(), $options, [
+        return $this->formFactory->create(OptionType::class, $options, [
             'action'    => $this->generateUrl(
                 'hackzilla_password_generator_show',
                 [

@@ -26,10 +26,10 @@ class OptionType extends AbstractType
         $builder
             ->add(
                 'quantity',
-                method_exists(AbstractType::class, 'getBlockPrefix') ? IntegerType::class : 'integer',
+                IntegerType::class,
                 [
                     'label' => 'OPTION_HOW_MANY_PASSWORDS',
-                ]
+                ],
             );
 
         if (!is_a($options['generator'], PasswordGeneratorInterface::class)) {
@@ -63,7 +63,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                method_exists(AbstractType::class, 'getBlockPrefix') ? TextType::class : 'text',
+                TextType::class,
                 [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
@@ -83,7 +83,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                method_exists(AbstractType::class, 'getBlockPrefix') ? CheckboxType::class : 'checkbox',
+                CheckboxType::class,
                 [
                     'value'    => 1,
                     'data'     => $option->getValue(),
@@ -104,7 +104,7 @@ class OptionType extends AbstractType
         $builder->add(
             $builder->create(
                 strtolower($key),
-                method_exists(AbstractType::class, 'getBlockPrefix') ? IntegerType::class : 'integer',
+                IntegerType::class,
                 [
                     'data'     => $option->getValue(),
                     'label'    => 'OPTION_'.$key,
