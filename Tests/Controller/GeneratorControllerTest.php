@@ -65,12 +65,10 @@ class GeneratorControllerTest extends KernelTestCase
 
         $container
             ->method('get')
-            ->will(
-                $this->returnCallback(
-                    function ($service) {
-                        return $service;
-                    }
-                )
+            ->willReturnCallback(
+                function ($service) {
+                    return $service;
+                }
             );
 
         $this->_object->setContainer($container);
@@ -79,7 +77,7 @@ class GeneratorControllerTest extends KernelTestCase
         $this->invokeMethod($this->_object, 'getPasswordGenerator', ['non-existent']);
     }
 
-    public function modeProvider()
+    public static function modeProvider()
     {
         return [
             ['dummy', 'dummy'],
@@ -104,7 +102,7 @@ class GeneratorControllerTest extends KernelTestCase
         $this->assertSame($check, $returnValue);
     }
 
-    public function nullModeProvider()
+    public static function nullModeProvider()
     {
         return [
             ['dummy', 'dummy'],

@@ -120,6 +120,9 @@ final class TestKernel extends Kernel
             'form' => null,
             'test' => true,
         ];
+        if (version_compare(self::VERSION, '7.3', '>=')) {
+            $frameworkConfig['property_info'] = ['with_constructor_extractor' => true];
+        }
 
         if (version_compare(self::VERSION, '5.1', '>=') && version_compare(self::VERSION, '6.0', '<')) {
             $frameworkConfig['router'] = ['utf8' => true];
@@ -130,11 +133,13 @@ final class TestKernel extends Kernel
         // TwigBundle config
         $twigConfig = [
             'strict_variables' => '%kernel.debug%',
-            'exception_controller' => null,
         ];
         // "default_path" configuration is available since version 3.4.
         if (version_compare(self::VERSION, '3.4', '>=')) {
             $twigConfig['default_path'] = __DIR__.'/Resources/views';
+        }
+        if (version_compare(self::VERSION, '7.3', '<')) {
+            $twigConfig['exception_controller'] = null;
         }
         $c->loadFromExtension('twig', $twigConfig);
     }
