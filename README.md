@@ -12,9 +12,9 @@ Simple multilingual bundle to add to any project. Available languages (Pull Requ
 Requirements
 ------------
 
-* PHP >= 8.0.2
+* PHP >= 8.1
 * [hackzilla/password-generator](https://github.com/hackzilla/password-generator) ^1.3.0
-* Symfony ^6.0|^7.0
+* Symfony ^7.0|^8.0
 
 
 Version Matrix
@@ -22,6 +22,7 @@ Version Matrix
 
 | Password Generator Bundle | Symfony                      | PHP      |
 |---------------------------|------------------------------|----------|
+| 7.x                       | ^7.0 &#124; ^8.0             | >=8.2*   |
 | 6.x                       | ^6.0 &#124; ^7.0             | >=8.0.2* |
 | 5.x                       | ^4.0 &#124; ^5.0 &#124; ^6.0 | >=7.1*   |
 | 4.x                       | ^3.0 &#124; ^4.0 &#124; ^5.0 | >=7.1*   |
@@ -32,6 +33,7 @@ Version Matrix
 * Symfony 5.0 requires PHP v7.2+
 * Symfony 6.0 requires PHP v8.0.2+
 * Symfony 7.0 requires PHP v8.2+
+* Symfony 8.0 requires PHP v8.4+
 
 Installation
 ------------
@@ -41,7 +43,7 @@ Add HackzillaPasswordGeneratorBundle in your composer.json:
 ```yaml
 {
     "require": {
-        "hackzilla/password-generator-bundle": "^6.0"
+        "hackzilla/password-generator-bundle": "^7.0"
     }
 }
 ```
@@ -89,6 +91,11 @@ framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }
 ```
+
+Migrating from v6
+-----------------
+
+Version 6 release is drops support for Symfony v6 and requires PHP >=8.1
 
 Migrating from v5
 -----------------
