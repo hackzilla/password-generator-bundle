@@ -14,7 +14,7 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
         $this->_object = new \Hackzilla\Bundle\PasswordGeneratorBundle\Entity\Options($passwordGenerator);
     }
 
-    public function quantityProvider()
+    public static function quantityProvider()
     {
         return [
             [1, 1],
@@ -38,7 +38,7 @@ class OptionsTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($check, $this->_object->getQuantity());
     }
 
-    public function optionProvider()
+    public static function optionProvider()
     {
         return [
             ['LENGTH', 1],

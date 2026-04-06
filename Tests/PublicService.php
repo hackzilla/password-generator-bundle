@@ -20,7 +20,7 @@ final class PublicService implements CompilerPassInterface
         'twig',
     ];
 
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         foreach ($container->getDefinitions() as $id => $definition) {
             $this->checkForService($id, $definition);
@@ -30,7 +30,7 @@ final class PublicService implements CompilerPassInterface
         }
     }
 
-    private function checkForService(string $id, $definition)
+    private function checkForService(string $id, $definition): void
     {
         foreach (self::SERVICES as $service) {
             if (stripos($id, $service) === 0) {
